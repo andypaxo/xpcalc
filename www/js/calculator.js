@@ -1,7 +1,6 @@
 var calculator = new (function () {
     // Table from DM's guide p38
     var xpTable = [
-/*0  */  [],
 /*1st*/  [],
 /*2nd*/  [],        
 /*3rd*/  [300, 600, 900, 1350, 1800, 2700, 3600, 5400, 7200, 10800, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
@@ -24,10 +23,21 @@ var calculator = new (function () {
 /*20th*/ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000]
 ];
 
-    this.xp = function(encounter) {
-        var playerLevel = encounter.playerLevel;
-        var challenge = encounter.challenge;
-        return xpTable[playerLevel][challenge];
+    this.singleXP = function(victory) {
+        if (victory.challengeRating > 20)
+            return 2 * this.singleXP({
+                playerLevel: victory.playerLevel,
+                challengeRating: victory.challengeRating - 2
+            });
+
+        // Minimum PL 3
+        var playerLevel = Math.max(victory.playerLevel, 3);
+        var challengeRating = victory.challengeRating;
+
+        // Subtracting 1 for zero-based array index
+        return challengeRating >= 1
+            ? xpTable[playerLevel - 1][challengeRating - 1]
+            : xpTable[playerLevel - 1][0] * challengeRating;
     };
 
 })();
