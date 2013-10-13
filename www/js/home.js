@@ -19,6 +19,13 @@
     tmpl.build({
         element: listingElement,
         objects: campaigns,
-        input: '<li><span class="item-description">@name</span></li>'
+        input: '<li data-id="@id"><span class="item-description">@name</span></li>'
     })
+
+    Array.prototype.forEach.call(listingElement.children, function (elem) {
+        elem.onclick = function () {
+            var campaignId = elem.attributes.getNamedItem('data-id').value;
+        document.location.replace('campaign.html?id=' + campaignId);
+        };
+    });
 })();

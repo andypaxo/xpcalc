@@ -22,7 +22,6 @@ var tmpl = {
             return tmpl.replaceStrings({input:input, obj:obj});
         });
         parentElem.innerHTML = contents.join('');
-        console.log(parentElem.innerHTML);
 
         return parentElem;
     }
