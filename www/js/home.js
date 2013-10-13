@@ -9,4 +9,13 @@
     document.getElementById('btn-add-campaign').onclick = function () {
         document.location = 'start-campaign.html';
     };
+
+    var campaignListing = repo.fetch('campaign-listing') || [];
+    var listing = document.getElementById('list-campaigns');
+    campaignListing.forEach(function (id) {
+        var campaign = repo.fetch(id);
+        var elem = document.createElement('li');
+        
+        console.log(campaign.name);
+    });
 })();

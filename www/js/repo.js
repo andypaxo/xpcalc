@@ -28,9 +28,14 @@ var repo = new (function() {
     // xpcalc specific ----------------------------------------------
 
     this.startCampaign = function (campaign) {
-        var id = util.makeId();
+        var id = util.makeId('campaign');
         campaign.id = id;
-        this.store('campaign-' + id, campaign);
+        this.store(id, campaign);
+
+        var campaignListing = this.fetch('campaign-listing') || [];
+        campaignListing.push(id);
+        this.store('campaign-listing', campaignListing);
+
         return campaign;
     };
 
