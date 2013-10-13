@@ -1,4 +1,5 @@
 input[type='text'] {
+    background: transparent;
     display: block;
     border-bottom-color: #B8B8B8; border-width: 0 0 1px 0;
     margin: 6px; padding: 4px 12px;
