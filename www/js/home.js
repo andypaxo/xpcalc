@@ -11,11 +11,14 @@
     };
 
     var campaignListing = repo.fetch('campaign-listing') || [];
-    var listing = document.getElementById('list-campaigns');
-    campaignListing.forEach(function (id) {
-        var campaign = repo.fetch(id);
-        var elem = document.createElement('li');
-        
-        console.log(campaign.name);
+    var campaigns = campaignListing.map(function (id) {
+        return repo.fetch(id);
     });
+    var listingElement = document.getElementById('list-campaigns');
+
+    tmpl.build({
+        element: listingElement,
+        objects: campaigns,
+        input: '<li><span class="item-description">@name</span></li>'
+    })
 })();
