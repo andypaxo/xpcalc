@@ -67,14 +67,4 @@ var calculator = new (function () {
         }, this);
         return result;
     };
-
-    // TODO : This doesn't belong here
-    var getId = function () {
-        var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-        var id = '';
-        for (i = 0; i < 6; i++)
-            id += chars[Math.floor(Math.random() * chars.length)];
-        return id;
-    }
-
 })();
