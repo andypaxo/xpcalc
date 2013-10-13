@@ -6,7 +6,7 @@
         return 'The ' + util.randomItemFrom(places) + ' of ' + util.randomItemFrom(descriptors);
     };
 
-    document.getElementById('btn-add-campaign').onclick = function () {
-        document.location = 'start-campaign.html';
+    document.getElementById('form-start-campaign').onsubmit = function () {
+        alert('go');
     };
 })();
