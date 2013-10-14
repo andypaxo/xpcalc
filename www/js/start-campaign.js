@@ -7,12 +7,12 @@
     };
 
     window.onload = function () {
-        document.getElementById('txt-campaign-name').setAttribute('value', generateCampaignName());
+        document.getElementById('txt-campaign-name').value = generateCampaignName();
         document.getElementById('txt-campaign-name').select();
     };
 
     document.getElementById('form-start-campaign').onsubmit = function () {
-        var campaignName = document.getElementById('txt-campaign-name').getAttribute('value');
+        var campaignName = document.getElementById('txt-campaign-name').value;
         var campaign = repo.startCampaign({name: campaignName});
         document.location.replace('campaign.html?id=' + campaign.id);
         return false;
