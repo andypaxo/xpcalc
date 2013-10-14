@@ -17,5 +17,9 @@
         document.getElementById('btn-add-char').onclick = function () {
             document.location = 'add-character.html?campaignId=' + campaignId;
         };
+
+        document.getElementById('btn-add-encounter').onclick = function () {
+            document.location = 'add-encounter.html?campaignId=' + campaignId;
+        };
     };
 })();
