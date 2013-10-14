@@ -8,6 +8,7 @@ var tmpl = {
         while (match = exp.exec(input)) {
             var value = obj[match[1]];
             input = input.replace(match[0], value);
+            exp.lastIndex = 0; // Always start from the start
         }
 
         return input;

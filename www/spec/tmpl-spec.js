@@ -21,6 +21,17 @@ describe('Templator', function () {
         expect(result).toBe('1d5b-86eD : <b>Geoff</b>');
     });
 
+    it('Should replace overlapping identifiers', function () {
+        var result = tmpl.replaceStrings({
+            input: '@identifier : @name',
+            obj: {
+                identifier: '1d5b',
+                name: 'Geoff'
+            }
+        });
+        expect(result).toBe('1d5b : Geoff');
+    });
+
     it('Add elements based on a collection', function () {
         var elem = document.createElement('ul');
         var result = tmpl.build({
