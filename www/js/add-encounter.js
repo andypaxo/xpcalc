@@ -15,31 +15,41 @@
         save(character);
     };
 
-    window.onload = function () {
-        campaignId = util.getQueryStringParam('campaignId');
+    var buildFoeListing = function () {
+        document.getElementById('list-foes').innerHTML = '';
+        encounter.foes.forEach(function (foe, index) {
+            var newListItem = document.createElement('li');
+            newListItem.innerHTML = document.getElementById('tmpl-foe').innerHTML;
+            util.findInput(newListItem, 'foe-challenge-rating').value = foe.challengeRating;
+            util.findInput(newListItem, 'foe-quantity').value = foe.quantity;
+            document.getElementById('list-foes').appendChild(newListItem);
+        });
+    };
 
-        encounter.party = repo.fetch(campaignId.replace('campaign', 'characters'));
-
-        document.getElementById('form-add-encounter').onsubmit = function () {
-            generateCharacter();
-            window.history.back();
-            return false;
-        };
-
-        var newListItem = document.createElement('li');
-        newListItem.innerHTML = document.getElementById('tmpl-foe').innerHTML;
-        var crSelect = Array.prototype.filter.call(
-            newListItem.children,
-            function (elem) { return elem.getAttribute('name') === 'foe-challenge-rating'; }
-        )[0];
-        crSelect.value = encounter.foes[0].challengeRating;
-
+    var buildCharacterListing = function () {
         tmpl.build({
             input: document.getElementById('tmpl-character').innerHTML,
             objects: encounter.party,
             element: document.getElementById('list-characters')
-        })
+        });
+    };
 
-        document.getElementById('list-foes').appendChild(newListItem);
+    window.onload = function () {
+        campaignId = util.getQueryStringParam('campaignId');
+        encounter.party = repo.fetch(campaignId.replace('campaign', 'characters'));
+
+        buildFoeListing();
+        buildCharacterListing();
+
+        document.getElementById('btn-done').onclick = function () {
+            window.history.back();
+            return false;
+        };
+
+        document.getElementById('btn-add-foe').onclick = function () {
+            encounter.foes.push({challengeRating:1, quantity:1});
+            buildFoeListing();
+            return false;
+        };
     };
 })();

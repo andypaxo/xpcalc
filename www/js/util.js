@@ -31,5 +31,12 @@ var util = {
             if (matcher(list[i]))
                 return i;
         return -1;
+    },
+
+    findInput : function(parentElement, name) {
+        return Array.prototype.filter.call(
+            parentElement.children,
+            function (elem) { return elem.getAttribute('name') === name; }
+        )[0];
     }
 };
