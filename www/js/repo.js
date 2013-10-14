@@ -2,18 +2,18 @@ var repo = new (function() {
 
     // General ------------------------------------------------------
 
-    this.storage = window.localStorage;
+    var storage = window.localStorage;
 
     this.store = function (id, data) {
         var datatype = Object.prototype.toString.call(data);
         if (datatype === '[object Object]' || datatype === '[object Array]') {
             data = JSON.stringify(data);
         }
-        this.storage.setItem(id, data);
+        storage.setItem(id, data);
     };
 
     this.fetch = function (id) {
-        var data = this.storage.getItem(id);
+        var data = storage.getItem(id);
         var firstChar = (data || ' ')[0], lastChar = (data || ' ').substr(-1, 1);
         if (data != null && ((firstChar === '{' && lastChar === '}') || (firstChar === '[' && lastChar === ']'))) {
             data = JSON.parse(data);
@@ -22,10 +22,21 @@ var repo = new (function() {
     };
 
     this.erase = function (id) {
-        this.storage.removeItem(id);
+        storage.removeItem(id);
     };
 
     // xpcalc specific ----------------------------------------------
+
+    this.storeItemToList = function (params) {
+        var list = this.fetch(params.listId) || [];
+        var item = params.item;
+        var index = util.indexOfMatch(list, function (itemToMatch) { return itemToMatch.id === item.id; });
+        if (index >= 0)
+            list.splice(index, 1, item);
+        else
+            list.unshift(item);
+        this.store(params.listId, list);
+    };
 
     this.startCampaign = function (campaign) {
         var id = util.makeId('campaign');

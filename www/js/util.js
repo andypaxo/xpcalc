@@ -24,5 +24,12 @@ var util = {
     makeAtLeast : function (number, atLeast) {
         number = Number(number);
         return Number.isNaN(number) ? atLeast : Math.floor(Math.max(number, atLeast));
+    },
+
+    indexOfMatch : function(list, matcher) {
+        for (var i = 0; i < list.length; i++)
+            if (matcher(list[i]))
+                return i;
+        return -1;
     }
 };

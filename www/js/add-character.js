@@ -1,13 +1,14 @@
 (function() {
     var names = [ 'Endel', 'Awor', 'Quebas', 'Ariss', 'Eldfing', 'Saytanu', 'Onuz', 'Sersam', 'Dynab', 'Quequeo', 'Awmen', 'Rilaugha', 'Drayss', 'Omdar', 'Rodtdyn', 'Serzold', 'Wale', 'Lertqua', 'Leild', 'Roddara', 'Risshy' ];
-        var randomName = util.randomItemFrom(names) + ' ' + util.randomItemFrom(names);
+    var randomName = util.randomItemFrom(names) + ' ' + util.randomItemFrom(names);
+    var campaignId;
 
     var getCharacter = function () {
         return {
             name : document.getElementById('input-name').getAttribute('value'),
             level : document.getElementById('input-level').getAttribute('value'),
             xp : document.getElementById('input-xp').getAttribute('value'),
-            id : util.makeId('char');
+            id : util.makeId('char')
         };
     };
 
@@ -18,8 +19,8 @@
         character.xp = util.makeAtLeast(character.xp, 0);
     };
 
-    var getCharacterList = function (character) {
-        var id = util.getQueryStringParam(campaignId).replace('campaign', 'characters');
+    var save = function (character) {
+        var id = campaignId.replace('campaign', 'characters');
         repo.storeItemToList({listId:id, item:character})
     }
 
@@ -30,11 +31,13 @@
     };
 
     window.onload = function () {
+        campaignId = util.getQueryStringParam('campaignId');
         document.getElementById('input-name').setAttribute('value', randomName);
         document.getElementById('input-name').select();
 
         document.getElementById('form-add-character').onsubmit = function () {
             generateCharacter();
+            document.location = 'campaign.html?id=' + campaignId;
             return false;
         };
     };
