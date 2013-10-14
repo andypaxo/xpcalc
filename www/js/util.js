@@ -19,5 +19,10 @@ var util = {
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    },
+
+    makeAtLeast : function (number, atLeast) {
+        number = Number(number);
+        return Number.isNaN(number) ? atLeast : Math.floor(Math.max(number, atLeast));
     }
 };
