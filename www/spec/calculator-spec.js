@@ -1,6 +1,6 @@
 describe('Calculator', function () {
     describe('Single challenge calculations', function () {
-        it('Should calculate simple XP for one character / challenge', function () {
+        it('Should calculate simple XP for one character / foe', function () {
             var result = calculator.singleXP({
                 playerLevel: 6,
                 challengeRating: 4
@@ -33,11 +33,11 @@ describe('Calculator', function () {
         });
     });
 
-    describe('Single player, multiple challenge', function () {
+    describe('Single player, multiple foes', function () {
         it('Should add together a couple of rewards', function () {
             var result = calculator.playerXP({
                 playerLevel: 3,
-                challenges: [
+                foes: [
                     { challengeRating: 2, quantity: 2 },
                     { challengeRating: 3, quantity: 1 }
                 ]
@@ -50,12 +50,12 @@ describe('Calculator', function () {
         it('Should divide experience across party', function () {
             var result = calculator.partyXP({
                 party : [
-                    { id: 'LV6aeP', playerLevel: 3 },
-                    { id: 'GoChCx', playerLevel: 4 },
-                    { id: 'LVTDfc', playerLevel: 4 },
-                    { id: 'Rjbp2u', playerLevel: 5 },
+                    { id: 'LV6aeP', level: 3 },
+                    { id: 'GoChCx', level: 4 },
+                    { id: 'LVTDfc', level: 4 },
+                    { id: 'Rjbp2u', level: 5 },
                 ],
-                challenges: [
+                foes: [
                     { challengeRating: 2, quantity: 2 },
                     { challengeRating: 3, quantity: 1 }
                 ]

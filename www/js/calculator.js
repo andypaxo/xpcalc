@@ -41,28 +41,28 @@ var calculator = new (function () {
     };
 
     var addXP = function(playerLevel, calc) {
-        return function(currXP, challenge) {
+        return function(currXP, foe) {
             return currXP + calc.singleXP({
                 playerLevel: playerLevel,
-                challengeRating: challenge.challengeRating
-            }) * challenge.quantity;
+                challengeRating: foe.challengeRating
+            }) * foe.quantity;
         };
     };
 
     this.playerXP = function(challenge) {
         var playerLevel = challenge.playerLevel;
-        return challenge.challenges.reduce(addXP(playerLevel, this), 0);
+        return challenge.foes.reduce(addXP(playerLevel, this), 0);
     };
 
     this.partyXP = function(encounter) {
         var result = {};
-        var challenges = encounter.challenges;
+        var foes = encounter.foes;
         var numPlayers = encounter.party.length;
 
         encounter.party.forEach(function (player) {
             result[player.id] = Math.floor(this.playerXP({
-                playerLevel: player.playerLevel,
-                challenges: challenges
+                playerLevel: player.level,
+                foes: foes
             }) / numPlayers);
         }, this);
         return result;
