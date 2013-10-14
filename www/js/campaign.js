@@ -11,7 +11,7 @@
         tmpl.build({
             element: listingElement,
             objects: characters,
-            input: '<li data-id="@id"><span class="item-description">@name</span></li>'
+            input: '<li data-id="@id"><span class="item-description">@name</span><br/><span class="item-subtext">Level @level, @xp XP</span></li>'
         });
 
         document.getElementById('btn-add-char').onclick = function () {
