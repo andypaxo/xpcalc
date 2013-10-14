@@ -11,15 +11,19 @@
         <title>xpcalc</title>
     </head>
     <body>
-        <header class='holo-actionBar'><span id='title-campaign-name'></span></header>
+        <header class='holo-actionBar'><span>Add character</span></header>
         
-        <ul id='list-characters'></ul>
-        <button id='btn-add-char'>Add a character</button>
+        <form action='#' id='form-add-character'>
+            <input type='text' id='input-name'></input>
+            <input type='number' id='input-level' placeholder='Level'></input>
+            <input type='number' id='input-xp' placeholder='Experience points'></input>
+            <button id='btn-add-char'>Add</button>
+        </form>
 
         <script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/repo.js"></script>
         <script type="text/javascript" src="js/tmpl.js"></script>
-        <script type="text/javascript" src="js/campaign.js"></script>
+        <script type="text/javascript" src="js/add-character.js"></script>
         <script type="text/javascript" src="js/holo-touch.js"></script>
     </body>
 </html>

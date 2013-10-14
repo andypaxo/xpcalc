@@ -1,6 +1,6 @@
 (function() {
     var generateCampaignName = function () {
-        var places = ['Tower', 'Caves', 'Forest', 'Crypt', 'Halls', 'Temple', 'Plane', 'Portal', 'Tome'];
+        var places = ['Tower', 'Caves', 'Forest', 'Crypt', 'Halls', 'Temple', 'Hand', 'Portal', 'Tome'];
         var descriptors = ['Doom', 'the Ancients', 'Terror', 'Mystery', 'Destiny', 'Secrets', 'Darkness'];
 
         return 'The ' + util.randomItemFrom(places) + ' of ' + util.randomItemFrom(descriptors);
