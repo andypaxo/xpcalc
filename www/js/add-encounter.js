@@ -15,6 +15,13 @@
         save(character);
     };
 
+    var applyScores = function (party) {
+        var result = calculator.partyXP(encounter);
+        party.forEach(function (player){
+            player.xp += result[player.id] || 0;
+        });
+    };
+
     var buildFoeListing = function () {
         var template = document.getElementById('tmpl-foe').innerHTML;
         document.getElementById('list-foes').innerHTML = '';
@@ -27,21 +34,21 @@
             crInput.value = foe.challengeRating;
             crInput.onchange = function () {
                 foe.challengeRating = crInput.value;
-                calculateScores();
+                recalculateScores();
             };
             
             var qInput = util.findInput(newListItem, 'foe-quantity');
             qInput.value = foe.quantity;
             qInput.onchange = function () {
                 foe.quantity = qInput.value;
-                calculateScores();
+                recalculateScores();
             };
 
             var deleteButton = util.findInput(newListItem, 'delete');
             deleteButton.onclick = function () {
                 encounter.foes.splice(index, 1);
                 buildFoeListing();
-                calculateScores();
+                recalculateScores();
             };
 
             document.getElementById('list-foes').appendChild(newListItem);
@@ -68,12 +75,12 @@
                     var charId = elem.getAttribute('name');
                     var character = encounter.party.filter(function (c) { return c.id === charId; })[0];
                     character.include = elem.checked;
-                    calculateScores();
+                    recalculateScores();
                 };
             });
     };
 
-    var calculateScores = function () {
+    var recalculateScores = function () {
         var result = calculator.partyXP(encounter);
         encounter.party.forEach(function (player){
             player.xpGain = result[player.id] || '';
@@ -81,14 +88,25 @@
         buildCharacterListing();
     };
 
+    var getPartyId = function () {
+        return campaignId.replace('campaign', 'characters');
+    };
+
+    var pullPartyFromDatabase = function () {
+        return repo.fetch(getPartyId());
+    };
+
     window.onload = function () {
         campaignId = util.getQueryStringParam('campaignId');
-        encounter.party = repo.fetch(campaignId.replace('campaign', 'characters'));
+        encounter.party = pullPartyFromDatabase();
 
         buildFoeListing();
-        calculateScores();
+        recalculateScores();
 
         document.getElementById('btn-done').onclick = function () {
+            var party = pullPartyFromDatabase();
+            applyScores(party);
+            repo.store(getPartyId(), party);
             window.history.back();
             return false;
         };
@@ -96,7 +114,7 @@
         document.getElementById('btn-add-foe').onclick = function () {
             encounter.foes.push({challengeRating:1, quantity:1});
             buildFoeListing();
-            calculateScores();
+            recalculateScores();
             return false;
         };
     };
