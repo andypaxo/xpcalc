@@ -57,9 +57,12 @@ var calculator = new (function () {
     this.partyXP = function(encounter) {
         var result = {};
         var foes = encounter.foes;
-        var numPlayers = encounter.party.length;
+        var party = encounter.party.filter(function (player) {
+            return player.include !== false;
+        });
+        var numPlayers = party.length;
 
-        encounter.party.forEach(function (player) {
+        party.forEach(function (player) {
             result[player.id] = Math.floor(this.playerXP({
                 playerLevel: player.level,
                 foes: foes

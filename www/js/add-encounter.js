@@ -16,10 +16,12 @@
     };
 
     var buildFoeListing = function () {
+        var template = document.getElementById('tmpl-foe').innerHTML;
         document.getElementById('list-foes').innerHTML = '';
+
         encounter.foes.forEach(function (foe, index) {
             var newListItem = document.createElement('li');
-            newListItem.innerHTML = document.getElementById('tmpl-foe').innerHTML;
+            newListItem.innerHTML = template;
             
             var crInput = util.findInput(newListItem, 'foe-challenge-rating');
             crInput.value = foe.challengeRating;
@@ -40,11 +42,18 @@
     };
 
     var buildCharacterListing = function () {
-        tmpl.build({
-            input: document.getElementById('tmpl-character').innerHTML,
-            objects: encounter.party,
-            element: document.getElementById('list-characters')
+        var template = document.getElementById('tmpl-character').innerHTML;
+        document.getElementById('list-characters').innerHTML = '';
+
+        encounter.party.forEach(function (character) {
+            var fragment = tmpl.replaceStrings({
+                input: template,
+                obj: character
+            });
+            fragment = fragment.replace('_checked', character.include !== false ? 'checked="checked"' : '');
+            document.getElementById('list-characters').innerHTML += fragment;
         });
+
         Array.prototype.forEach.call(
             document.getElementsByClassName('character-enable'),
             function (elem) {
@@ -59,10 +68,9 @@
 
     var calculateScores = function () {
         var result = calculator.partyXP(encounter);
-        for(var playerId in result) {
-            var player = encounter.party.filter(function (player) { return player.id === playerId; })[0];
-            player.xpGain = result[playerId];
-        };
+        encounter.party.forEach(function (player){
+            player.xpGain = result[player.id] || '';
+        });
         buildCharacterListing();
     };
 

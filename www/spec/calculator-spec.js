@@ -66,6 +66,26 @@ describe('Calculator', function () {
             expect(result['LVTDfc']).toBe(500);
             expect(result['Rjbp2u']).toBe(437);
         });
+
+        it('Should exclude absent party members', function () {
+            var result = calculator.partyXP({
+                party : [
+                    { id: 'LV6aeP', level: 3 },
+                    { id: 'GoChCx', level: 4, include: true },
+                    { id: 'LVTDfc', level: 4 },
+                    { id: 'Rjbp2u', level: 5, include: false },
+                ],
+                foes: [
+                    { challengeRating: 1, quantity: 2 },
+                    { challengeRating: 3, quantity: 1 }
+                ]
+            });
+
+            expect(result['LV6aeP']).toBe(500);
+            expect(result['GoChCx']).toBe(466);
+            expect(result['LVTDfc']).toBe(466);
+            expect(result['Rjbp2u']).toBeUndefined();
+        });
     });
 
     // [x] Party
