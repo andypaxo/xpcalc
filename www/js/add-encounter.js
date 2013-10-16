@@ -30,10 +30,17 @@
                 calculateScores();
             };
             
-            var qInput = util.findInput(newListItem, 'foe-quantity')
+            var qInput = util.findInput(newListItem, 'foe-quantity');
             qInput.value = foe.quantity;
             qInput.onchange = function () {
                 foe.quantity = qInput.value;
+                calculateScores();
+            };
+
+            var deleteButton = util.findInput(newListItem, 'delete');
+            deleteButton.onclick = function () {
+                encounter.foes.splice(index, 1);
+                buildFoeListing();
                 calculateScores();
             };
 
