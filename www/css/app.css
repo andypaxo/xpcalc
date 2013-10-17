@@ -24,6 +24,11 @@ input[type='checkbox'] {
     margin-top: 0;
 }
 
+.readonly-display {
+    margin: 12px 6px 6px 6px;
+    padding: 4px 12px;
+}
+
 *:focus { outline: none; }
 
 h2 {
@@ -34,6 +39,10 @@ h2 {
     border-bottom: 1px solid #33b5e5;
     margin-bottom: 0;
 }
+
+.no-underline { border-bottom: none; }
+
+.nudge {  padding-left: 18px; padding-top: 10px;}
 
 ul {
     list-style: none;

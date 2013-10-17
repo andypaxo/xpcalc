@@ -20,8 +20,9 @@
     var fixUp = function (character) {
         if (character.name.length == 0)
             character.name = randomName;
-        character.levelAdjustment = util.makeAtLeast(character.levelAdjustment, 1);
+        character.levelAdjustment = util.makeAtLeast(character.levelAdjustment, -20);
         character.xp = util.makeAtLeast(character.xp, 0);
+        return character;
     };
 
     var save = function (character) {
@@ -30,10 +31,17 @@
     }
 
     var generateCharacter = function () {
-        var character = getCharacter();
-        fixUp(character);
-        save(character);
+        return fixUp(getCharacter());
     };
+
+    var saveCharacter = function () {
+        save(generateCharacter());
+    };
+
+    var recalculateLevel = function () {
+        var level = calculator.playerLevel(generateCharacter());
+        document.getElementById('display-level').innerText = level.toString();
+    }
 
     window.onload = function () {
         campaignId = util.getQueryStringParam('campaignId');
@@ -41,9 +49,16 @@
         document.getElementById('input-name').select();
 
         document.getElementById('form-add-character').onsubmit = function () {
-            generateCharacter();
+            saveCharacter();
             window.history.back();
             return false;
         };
+
+        var ctx = this;
+        var inputLevelAdjust = document.getElementById('input-level-adjust');
+        var inputXp = document.getElementById('input-xp');
+        var recalc = function() { recalculateLevel.call(ctx); }
+        inputLevelAdjust.oninput = inputXp.oninput = recalc;
+        recalculateLevel();
     };
 })();

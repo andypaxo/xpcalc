@@ -5,6 +5,9 @@
         document.getElementById('title-campaign-name').innerText = campaign.name;
 
         var characters = repo.fetch(campaignId.replace('campaign', 'characters')) || [];
+        characters.forEach(function (char) {
+            char.level = calculator.playerLevel(char);
+        });
 
         var listingElement = document.getElementById('list-characters');
 

@@ -21,6 +21,7 @@ describe ('Util', function () {
             expect(util.makeAtLeast('How much is the fish', 1)).toBe(1);
             expect(util.makeAtLeast(undefined, 1)).toBe(1);
             expect(util.makeAtLeast(NaN, 1)).toBe(1);
+            expect(util.makeAtLeast('', 1)).toBe(1);
             expect(util.makeAtLeast('0x01', 10)).toBe(10);
             expect(util.makeAtLeast('0xff', 10)).toBe(255);
         }); 
