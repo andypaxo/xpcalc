@@ -11,7 +11,7 @@
     var getCharacter = function () {
         return {
             name : document.getElementById('input-name').value,
-            level : document.getElementById('input-level').value,
+            levelAdjustment : document.getElementById('input-level-adjust').value,
             xp : document.getElementById('input-xp').value,
             id : util.makeId('char')
         };
@@ -20,7 +20,7 @@
     var fixUp = function (character) {
         if (character.name.length == 0)
             character.name = randomName;
-        character.level = util.makeAtLeast(character.level, 1);
+        character.levelAdjustment = util.makeAtLeast(character.levelAdjustment, 1);
         character.xp = util.makeAtLeast(character.xp, 0);
     };
 

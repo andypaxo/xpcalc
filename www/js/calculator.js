@@ -23,6 +23,12 @@ var calculator = new (function () {
         /*20th*/ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000]
     ];
 
+    var levelList = [
+        0, 1000, 3000, 6000, 10000, 15000, 21000, 28000, 36000, 45000,
+        55000, 66000, 78000, 91000, 105000, 120000, 136000, 153000, 171000, 190000,
+        210000, 231000, 253000, 276000, 300000, 325000, 351000, 378000, 406000, 435000
+    ];
+
     this.singleXP = function(challenge) {
         if (challenge.challengeRating > 20)
             return 2 * this.singleXP({
@@ -64,10 +70,20 @@ var calculator = new (function () {
 
         party.forEach(function (player) {
             result[player.id] = Math.floor(this.playerXP({
-                playerLevel: player.level,
+                playerLevel: this.playerLevel(player),
                 foes: foes
             }) / numPlayers);
         }, this);
         return result;
     };
+
+    this.playerLevel = function(player) {
+        var level;
+        for (level = levelList.length - 1; level >= 0; level--) {
+            if (levelList[level] <= player.xp)
+                break;
+        };
+
+        return level + (player.levelAdjustment || 0) + 1;
+    }
 })();

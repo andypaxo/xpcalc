@@ -50,10 +50,10 @@ describe('Calculator', function () {
         it('Should divide experience across party', function () {
             var result = calculator.partyXP({
                 party : [
-                    { id: 'LV6aeP', level: 3 },
-                    { id: 'GoChCx', level: 4 },
-                    { id: 'LVTDfc', level: 4 },
-                    { id: 'Rjbp2u', level: 5 },
+                    { id: 'LV6aeP', xp: 3200 },
+                    { id: 'GoChCx', xp: 7250 },
+                    { id: 'LVTDfc', xp: 7250 },
+                    { id: 'Rjbp2u', xp: 12000 },
                 ],
                 foes: [
                     { challengeRating: 2, quantity: 2 },
@@ -70,10 +70,10 @@ describe('Calculator', function () {
         it('Should exclude absent party members', function () {
             var result = calculator.partyXP({
                 party : [
-                    { id: 'LV6aeP', level: 3 },
-                    { id: 'GoChCx', level: 4, include: true },
-                    { id: 'LVTDfc', level: 4 },
-                    { id: 'Rjbp2u', level: 5, include: false },
+                    { id: 'LV6aeP', xp: 3200 },
+                    { id: 'GoChCx', xp: 7250, include: true },
+                    { id: 'LVTDfc', xp: 7250 },
+                    { id: 'Rjbp2u', xp: 12000, include: false },
                 ],
                 foes: [
                     { challengeRating: 1, quantity: 2 },
@@ -88,12 +88,24 @@ describe('Calculator', function () {
         });
     });
 
+    describe('Calculating levels', function() {
+        it('Should calculate regular and epic levels', function () {
+            expect(calculator.playerLevel({xp : 1})).toBe(1);
+            expect(calculator.playerLevel({xp : 3000})).toBe(3);
+            expect(calculator.playerLevel({xp : 407000})).toBe(29);
+        });
+
+        it ('Should take level adjustment into account', function () {
+            expect(calculator.playerLevel({xp : 2500, levelAdjustment: 2})).toBe(4);
+        });
+    });
+
     // [x] Party
-    // [-] ECL?
+    // [x] ECL?
     // [x] Rounding
     // [x] < level 3
     // [x] > level 20
-    // [-] Special cases noted in calculator
+    // [x] Special cases noted in calculator
     // [x] Example from DM's guide
-    // [ ] Decide what to do with out of bounds challenges
+    // [x] Decide what to do with out of bounds challenges
 });
