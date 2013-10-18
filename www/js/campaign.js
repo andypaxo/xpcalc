@@ -35,5 +35,9 @@
         document.getElementById('btn-edit-campaign').onclick = function () {
             document.location = 'start-campaign.html?campaignId=' + campaignId;
         };
+
+        document.getElementById('btn-edit-encounters').onclick = function () {
+            document.location = 'list-encounters.html?campaignId=' + campaignId;
+        };
     };
 })();

@@ -5,7 +5,7 @@
     };
 
     var saveEncounter = function (rewards) {
-         var id = campaignId.replace('campaign', 'enounters');
+         var id = campaignId.replace('campaign', 'encounters');
         repo.storeItemToList({
             listId: id,
             item: {
