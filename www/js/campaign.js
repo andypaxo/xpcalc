@@ -17,6 +17,13 @@
             input: '<li data-id="@id"><span class="item-description">@name</span><br/><span class="item-subtext">Level @level, @xp XP</span></li>'
         });
 
+        Array.prototype.forEach.call(listingElement.children, function (elem) {
+            elem.onclick = function () {
+                var characterId = elem.attributes.getNamedItem('data-id').value;
+                document.location = 'add-character.html?campaignId=' + campaignId + '&characterId=' + characterId;
+            };
+        });
+
         document.getElementById('btn-add-char').onclick = function () {
             document.location = 'add-character.html?campaignId=' + campaignId;
         };

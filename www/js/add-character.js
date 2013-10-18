@@ -7,14 +7,18 @@
         'Kimurne', 'Radranu', 'Nynage', 'Etqua', 'Undskel', 'Banyage', 'Vuron'];
     var randomName = util.randomItemFrom(names) + ' ' + util.randomItemFrom(names);
     var campaignId;
+    var characterId;
 
-    var getCharacter = function () {
-        return {
-            name : document.getElementById('input-name').value,
-            levelAdjustment : document.getElementById('input-level-adjust').value,
-            xp : document.getElementById('input-xp').value,
-            id : util.makeId('char')
-        };
+    var getCharacter = function (id) {
+        return (id
+            ?  repo.getCharacter(campaignId, id)
+            :  fixUp({
+                name : document.getElementById('input-name').value,
+                levelAdjustment : document.getElementById('input-level-adjust').value,
+                xp : document.getElementById('input-xp').value,
+                id : util.makeId('char')
+            })
+        );
     };
 
     var fixUp = function (character) {
@@ -30,24 +34,32 @@
         repo.storeItemToList({listId:id, item:character})
     }
 
-    var generateCharacter = function () {
-        return fixUp(getCharacter());
-    };
-
     var saveCharacter = function () {
-        save(generateCharacter());
+        var character = getCharacter();
+        if (characterId)
+            character.id = characterId;
+        save(character);
     };
 
     var recalculateLevel = function () {
-        var level = calculator.playerLevel(generateCharacter());
+        var level = calculator.playerLevel(getCharacter());
         document.getElementById('display-level').innerText = level.toString();
     }
 
     window.onload = function () {
         campaignId = util.getQueryStringParam('campaignId');
-        document.getElementById('input-name').value = randomName;
-        document.getElementById('input-name').select();
+        characterId = util.getQueryStringParam('characterId');
+        var character = getCharacter(characterId);
+        document.getElementById('input-name').value = characterId ? character.name : randomName;
+        document.getElementById('input-level-adjust').value = characterId ? character.levelAdjustment : '';
+        document.getElementById('input-xp').value = characterId ? character.xp : '';
 
+        if (characterId) {
+            document.getElementById('btn-add-char').innerText = 'Save';
+            document.getElementById('title-text').innerText = 'Edit character';
+        }
+
+        document.getElementById('input-name').select();
         document.getElementById('form-add-character').onsubmit = function () {
             saveCharacter();
             window.history.back();

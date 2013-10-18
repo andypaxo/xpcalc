@@ -50,6 +50,11 @@ var repo = new (function() {
         return campaign;
     };
 
+    this.getCharacter = function (campaignId, characterId) {
+        var chars = this.fetch(campaignId.replace('campaign', 'characters'));
+        return chars.filter(function (character) { return character.id === characterId; })[0];
+    };
+
     // Migrations ---------------------------------------------------
 
     if (!this.fetch('data-version'))
