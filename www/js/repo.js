@@ -6,10 +6,11 @@ var repo = new (function() {
 
     this.store = function (id, data) {
         var datatype = Object.prototype.toString.call(data);
-        if (datatype === '[object Object]' || datatype === '[object Array]') {
-            data = JSON.stringify(data);
-        }
-        storage.setItem(id, data);
+        var dataToStore = ((datatype === '[object Object]' || datatype === '[object Array]')
+            ? JSON.stringify(data)
+            : data);
+        storage.setItem(id, dataToStore);
+        return data;
     };
 
     this.fetch = function (id) {

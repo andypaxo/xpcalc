@@ -31,5 +31,9 @@
         document.getElementById('btn-add-encounter').onclick = function () {
             document.location = 'add-encounter.html?campaignId=' + campaignId;
         };
+
+        document.getElementById('btn-edit-campaign').onclick = function () {
+            document.location = 'start-campaign.html?campaignId=' + campaignId;
+        };
     };
 })();
