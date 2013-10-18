@@ -4,15 +4,17 @@
         foes: [{challengeRating:1, quantity:1}]
     };
 
-    var save = function (enounter) {
-        var id = campaignId.replace('campaign', 'enounters');
-        repo.storeItemToList({listId:id, item:encounter})
-    }
-
-    var generateCharacter = function () {
-        var character = getCharacter();
-        fixUp(character);
-        save(character);
+    var saveEncounter = function (rewards) {
+         var id = campaignId.replace('campaign', 'enounters');
+        repo.storeItemToList({
+            listId: id,
+            item: {
+                id: util.makeId('encounter'),
+                foes: encounter.foes,
+                rewards: rewards,
+                date: new Date()
+            }
+        });
     };
 
     var applyScores = function (party) {
@@ -20,6 +22,7 @@
         party.forEach(function (player){
             player.xp += result[player.id] || 0;
         });
+        saveEncounter(result);
     };
 
     var buildFoeListing = function () {
