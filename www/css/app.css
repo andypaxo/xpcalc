@@ -89,6 +89,7 @@ li .button-remove {
     position: absolute;
     bottom: 0;
     color: #aaa;
+    font-size: 12px;
 }
 
 .footer a {
