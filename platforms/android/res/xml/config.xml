@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.helloCordova" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
-    <name>Hello Cordova</name>
+<widget id="net.softwarealchemist.xpcalc" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>DnD XP Calculator</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Track player XP for DnD 3.5
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="support@softwarealchemist.net" href="http://softwarealchemist.net">
+        The Software Alchemist
     </author>
     <content src="index.html" />
     <feature name="App">
