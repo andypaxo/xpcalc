@@ -23,7 +23,7 @@ var util = {
 
     makeAtLeast : function (number, atLeast) {
         number = Number(number);
-        return Number.isNaN(number) ? atLeast : Math.floor(Math.max(number, atLeast));
+        return isNaN(number) ? atLeast : Math.floor(Math.max(number, atLeast));
     },
 
     indexOfMatch : function(list, matcher) {
