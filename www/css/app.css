@@ -77,12 +77,20 @@ li .item-note {
     margin-right: 10px;
 }
 
-li .button-remove {
+li .line-button {
     width: 24px;
     height: 24px;
-    background: url(../img/delete.png) transparent no-repeat;
-    float: right;
     margin: 16px 5px 0 0;
+    float: right;
+}
+
+li .button-remove {
+    background: url(../img/delete.png) transparent no-repeat;
+}
+
+li .button-over-limit {
+    background: url(../img/over-cr-limit.png) transparent no-repeat;
+    margin-right: 16px;
 }
 
 .footer {
@@ -94,4 +102,8 @@ li .button-remove {
 
 .footer a {
     color: #aaa;
+}
+
+.hidden {
+    display: none;
 }

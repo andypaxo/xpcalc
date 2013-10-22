@@ -54,6 +54,15 @@
                 recalculateScores();
             };
 
+            var crOverButton = util.findInput(newListItem, 'over');
+            if (!foe.crTooHigh)
+                crOverButton.classList.add('hidden');
+            crOverButton.onclick = function () {
+                alert(
+                    'This challenge rating is too high for some of your party. No XP will be rewarded.\n\n'+
+                    'Remember, you can adjust the XP of players by hand from their individual pages if you need to');
+            };
+
             document.getElementById('list-foes').appendChild(newListItem);
         });
     };
@@ -89,6 +98,7 @@
             player.xpGain = result[player.id] || '';
         });
         buildCharacterListing();
+        buildFoeListing();
     };
 
     var getPartyId = function () {

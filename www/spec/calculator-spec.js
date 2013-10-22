@@ -46,6 +46,25 @@ describe('Calculator', function () {
         });
     });
 
+    describe('Foe with CR too high for player', function () {
+        it('Should not add points and warn the user', function () {
+            var input = {
+                party : [
+                    {id: 'bF90dd', playerLevel: 4200}
+                ],
+                foes: [
+                    { challengeRating: 2, quantity: 2 },
+                    { challengeRating: 12, quantity: 1 }
+                ]
+            };
+            var result = calculator.partyXP(input);
+
+            expect(result['bF90dd']).toBe(1200);
+            expect(input.foes[0].crTooHigh).toBe(false);
+            expect(input.foes[1].crTooHigh).toBe(true);
+        });
+    });
+
     describe('Whole party, whole encounter', function () {
         it('Should divide experience across party', function () {
             var result = calculator.partyXP({
