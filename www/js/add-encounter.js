@@ -3,6 +3,7 @@
     var encounter = {
         foes: [{challengeRating:1, quantity:1}]
     };
+    var loadedEncounter;
 
     var saveEncounter = function (rewards) {
          var id = campaignId.replace('campaign', 'encounters');
@@ -109,9 +110,24 @@
         return repo.fetch(getPartyId());
     };
 
+    var loadEncounter = function (id) {
+        var encounters = repo.fetch(campaignId.replace('campaign', 'encounters'));
+        return encounters.filter(function (encounter) {
+            return encounter.id === id;
+        })[0];
+    };
+
     window.onload = function () {
         campaignId = util.getQueryStringParam('campaignId');
         encounter.party = pullPartyFromDatabase();
+
+        var encounterId = util.getQueryStringParam('id');
+        if (encounterId) {
+            loadedEncounter = loadEncounter(encounterId);
+            var clonedEncounter = JSON.parse(JSON.stringify(loadedEncounter));
+            encounter.foes = clonedEncounter.foes;
+            document.getElementById('page-title').innerText = 'Edit encounter';
+        }
 
         buildFoeListing();
         recalculateScores();
