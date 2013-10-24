@@ -107,6 +107,44 @@ describe('Calculator', function () {
         });
     });
 
+    describe('Apply calculations to party', function () {
+        describe('It should apply a result', function () {
+            var resultToApply = {
+                aaaa : 100,
+                bbbb : 150,
+                cccc : 200
+            };
+            var party = [
+                { id : 'aaaa', xp : 2000 },
+                { id : 'bbbb', xp : 2500 },
+                { id : 'cccc', xp : 1000 }
+            ];
+
+            calculator.applyResultToParty(resultToApply, party);
+            expect(party[0].xp).toBe(2100);
+            expect(party[1].xp).toBe(2650);
+            expect(party[2].xp).toBe(1200);
+        });
+
+        describe('It should roll back a result', function () {
+            var resultToApply = {
+                aaaa : 100,
+                bbbb : 150,
+                cccc : 200
+            };
+            var party = [
+                { id : 'aaaa', xp : 2100 },
+                { id : 'bbbb', xp : 2650 },
+                { id : 'dddd', xp : 1200 }
+            ];
+
+            calculator.rollBackResult(resultToApply, party);
+            expect(party[0].xp).toBe(2000);
+            expect(party[1].xp).toBe(2500);
+            expect(party[2].xp).toBe(1200); // Not in result, leave unchanged
+        });
+    });
+
     describe('Calculating levels', function() {
         it('Should calculate regular and epic levels', function () {
             expect(calculator.playerLevel({xp : 1})).toBe(1);

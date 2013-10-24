@@ -97,5 +97,21 @@ var calculator = new (function () {
         };
 
         return level + (player.levelAdjustment || 0) + 1;
-    }
+    };
+
+    this.applyResultToParty = function(result, party) {
+        party.forEach(function (character) {
+            var res = result[character.id];
+            if (res)
+                character.xp += res;
+        });
+    };
+
+    this.rollBackResult = function(result, party) {
+        party.forEach(function (character) {
+            var res = result[character.id];
+            if (res)
+                character.xp -= res;
+        });
+    };
 })();

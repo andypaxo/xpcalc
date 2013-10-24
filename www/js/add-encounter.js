@@ -6,11 +6,12 @@
     var loadedEncounter;
 
     var saveEncounter = function (rewards) {
-         var id = campaignId.replace('campaign', 'encounters');
+        var id = campaignId.replace('campaign', 'encounters');
+        var encounterId = loadedEncounter ? loadedEncounter.id : util.makeId('encounter');
         repo.storeItemToList({
             listId: id,
             item: {
-                id: util.makeId('encounter'),
+                id: encounterId,
                 foes: encounter.foes,
                 rewards: rewards,
                 date: new Date()
@@ -20,9 +21,10 @@
 
     var applyScores = function (party) {
         var result = calculator.partyXP(encounter);
-        party.forEach(function (player){
-            player.xp += result[player.id] || 0;
-        });
+        if (loadedEncounter) {
+            calculator.rollBackResult(loadedEncounter.rewards, party);
+        }
+        calculator.applyResultToParty(result, party);
         saveEncounter(result);
     };
 
