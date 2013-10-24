@@ -11,6 +11,11 @@
     document.getElementById('form-start-campaign').onsubmit = function () {
         var campaignName = document.getElementById('txt-campaign-name').value;
 
+        if (campaignName === 'run specs') {
+            document.location = 'spec.html';
+            return false;
+        }
+
         var campaign = (campaignId
             ? repo.store(campaignId, {
                 id : campaignId,
