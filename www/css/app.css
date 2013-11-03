@@ -13,9 +13,14 @@ body { font-family: Roboto, 'Droid Sans', Helvetica, Arial, sans-serif; font-siz
 .holo-actionBar {
     background: #2e3436; color: white;
     padding: 20px 40px;
+    position: fixed; left: 0; right: 0; top: 0;
+    z-index: 100;
+}
+.action-bar-button {
+    float: right; width: 30px; height: 30px;
 }
 
-.content { margin: 0 20px 20px 20px; }
+.content { margin: 90px 20px 20px 20px; }
 
 h2 {
     color: #c00;
@@ -74,15 +79,13 @@ li {
 }
 
 li .item-description {
-    font-size: large;
-    height: 1.5em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 li .item-subtext {
-    color: #aaa;
+    color: #f57e7e;
     font-size: small;
     height: 20px;
     margin: 4px 20px 0 0;
@@ -105,6 +108,11 @@ li .line-button {
 li .button-remove { background: url(../img/delete.png) transparent no-repeat; }
 
 li .button-over-limit { background: url(../img/over-cr-limit.png) transparent no-repeat; margin-right: 16px; }
+
+.list-button {
+    margin-top: -20px; padding: 30px 20px; 
+    border-bottom: 1px solid #ddd;
+}
 
 /* -- FOOTER ----------------------------------------------------------------- */
 
