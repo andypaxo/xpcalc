@@ -13,14 +13,13 @@ body { font-family: Roboto, 'Droid Sans', Helvetica, Arial, sans-serif; font-siz
 .holo-actionBar {
     background: #2e3436; color: white;
     padding: 20px 40px;
-    position: fixed; left: 0; right: 0; top: 0;
     z-index: 100;
 }
 .action-bar-button {
     float: right; width: 30px; height: 30px;
 }
 
-.content { margin: 90px 20px 20px 20px; }
+.content { margin: 0 20px 20px 20px; }
 
 h2 {
     color: #c00;
@@ -124,3 +123,5 @@ li .button-over-limit { background: url(../img/over-cr-limit.png) transparent no
 }
 
 .footer a { color: #aaa; }
+
+.swiper-slide { overflow-y: scroll; }

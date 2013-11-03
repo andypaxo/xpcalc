@@ -80,7 +80,24 @@
 
         //Swipe(document.getElementById('content'));
         new Swiper('.swiper-container', {
-            mode: 'horizontal'
+            mode: 'horizontal',
+            autoResize: false
         });
+
+        var nav = document.getElementById('nav');
+
+        var fixPagesHeight = function() {
+            var newHeight = (window.innerHeight - nav.offsetHeight - 20) + 'px';
+            document.getElementById('content').style.height = newHeight;
+            Array.prototype.forEach.call(
+                document.getElementsByClassName('swiper-slide'),
+                function (elem) {
+                    elem.style.height = newHeight;
+                });
+        };
+
+        window.onresize = fixPagesHeight;
+
+        fixPagesHeight()
     };
 })();
