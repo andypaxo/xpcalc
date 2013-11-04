@@ -109,7 +109,10 @@ li .line-button { width: 24px; height: 24px; margin: 11px 5px 0 0; float: right;
 li .button-remove { background: url(../img/delete.png) transparent no-repeat; }
 li .button-over-limit { background: url(../img/over-cr-limit.png) transparent no-repeat; margin-right: 16px; }
 
-.list-button { margin-top: -20px; padding: 30px 20px;  border-bottom: 1px solid #ddd; }
+.list-button { padding: 30px 20px;  border-bottom: 1px solid #ddd; }
+.list-button-with-icon { background-size: 40px; background-position: 20px; background-repeat: no-repeat; padding-left: 70px; }
+.button-add-char { background-image: url(../img/add-char.png); }
+.button-add-encounter { background-image: url(../img/encounter.png); }
 
 .seamless-list li { border: none; padding: 20px 0; }
 
