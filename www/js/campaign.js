@@ -78,10 +78,18 @@
 
         // ------------
 
-        //Swipe(document.getElementById('content'));
-        new Swiper('.swiper-container', {
+        var tabs = Array.prototype.slice.call(document.getElementsByClassName('tab'));
+
+        var swiper = new Swiper('.swiper-container', {
             mode: 'horizontal',
-            autoResize: false
+            onSlideChangeStart: function (swiper) {
+                tabs.forEach(function (elem, index) {
+                    if (swiper.activeIndex === index)
+                        elem.classList.add('active');
+                    else
+                        elem.classList.remove('active');
+                });
+            }
         });
 
         var nav = document.getElementById('nav');
@@ -97,7 +105,12 @@
         };
 
         window.onresize = fixPagesHeight;
+        fixPagesHeight();
 
-        fixPagesHeight()
+        tabs.forEach(function (elem, index) {
+            elem.onclick = function () {
+                swiper.swipeTo(index);
+            };
+        });
     };
 })();

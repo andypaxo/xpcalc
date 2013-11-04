@@ -29,6 +29,12 @@ h2 {
 
 h3 { color: #555753; font-weight: normal; font-size: 18px; }
 
+/* -- TABS ------------------------------------------------------------------- */
+
+.tabs { background: black; color: white; text-align: center; font-size: 14px; }
+.tab { display: inline-block; height: 31px; padding-top: 12px; border-bottom: 1px solid #ef2929; width: 50%; }
+.tab.active { height: 27px; border-bottom-width: 5px; }
+
 /* -- FORMS ------------------------------------------------------------------ */
 
 form { margin-top: 40px; }
@@ -85,7 +91,7 @@ li .item-description {
 
 li .item-subtext {
     color: #f57e7e;
-    font-size: small;
+    font-size: 14px;
     height: 20px;
     margin: 4px 20px 0 0;
 }
