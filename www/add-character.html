@@ -11,32 +11,34 @@
         <title>xpcalc</title>
     </head>
     <body>
-        <header class='holo-actionBar'><span id='title-text'>Add character</span></header>
+        <header class='holo-actionBar' id='nav'><span id='title-text'>Add character</span></header>
         
-        <div class='content'>
-            <form action='#' id='form-add-character'>
-                <fieldset>
-                    <h3 class='no-underline nudge'>Name</h3>
-                    <input type='text' id='input-name'></input>
-                </fieldset>
+        <div class='content-scroll' id='content'>
+            <div class='content'>
+                <form action='#' id='form-add-character'>
+                    <fieldset>
+                        <h3 class='no-underline nudge'>Name</h3>
+                        <input type='text' id='input-name'></input>
+                    </fieldset>
 
-                <fieldset>
-                    <h3 class='no-underline nudge'>Experience points</h3>
-                    <input type='number' id='input-xp' placeholder='Experience points'></input>
-                </fieldset>
+                    <fieldset>
+                        <h3 class='no-underline nudge'>Experience points</h3>
+                        <input type='number' id='input-xp' placeholder='Experience points'></input>
+                    </fieldset>
 
-                <fieldset>
-                    <h3 class='no-underline nudge'>Level adjustment</h3>
-                    <input type='number' id='input-level-adjust' placeholder='Level adjustment'></input>
-                </fieldset>
+                    <fieldset>
+                        <h3 class='no-underline nudge'>Level adjustment</h3>
+                        <input type='number' id='input-level-adjust' placeholder='Level adjustment'></input>
+                    </fieldset>
 
-                <fieldset>
-                    <h3 class='no-underline nudge'>Effective class level:</h3>
-                    <span id='display-level'></span>
-                </fieldset>
-                
-                <button id='btn-add-char'>Add</button>
-            </form>
+                    <fieldset>
+                        <h3 class='no-underline nudge'>Effective class level:</h3>
+                        <span id='display-level'></span>
+                    </fieldset>
+                    
+                    <button id='btn-add-char'>Add</button>
+                </form>
+            </div>
         </div>
         
         <script type="text/javascript" src="cordova.js"></script><script type="text/javascript" src="js/handle-error.js"></script>

@@ -118,6 +118,7 @@ li .button-over-limit { background: url(../img/over-cr-limit.png) transparent no
 .footer { position: absolute; bottom: 0; color: #aaa; font-size: 12px; }
 .footer a { color: #aaa; }
 
-.swiper-slide { overflow-y: scroll; }
+.swiper-slide, .content-scroll { overflow-y: scroll; }
+.content-scroll { overflow-x: hidden; }
 
 .hidden { display: none; }

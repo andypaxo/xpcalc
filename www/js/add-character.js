@@ -72,5 +72,13 @@
         var recalc = function() { recalculateLevel.call(ctx); }
         inputLevelAdjust.oninput = inputXp.oninput = recalc;
         recalculateLevel();
+        
+        var nav = document.getElementById('nav');
+        var fixPagesHeight = function() {
+            var newHeight = (window.innerHeight - nav.offsetHeight - 20) + 'px';
+            document.getElementById('content').style.height = newHeight;
+        };
+        window.onresize = fixPagesHeight;
+        fixPagesHeight();
     };
 })();
