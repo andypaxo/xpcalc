@@ -22,9 +22,8 @@ body { font-family: Roboto, 'Droid Sans', Helvetica, Arial, sans-serif; font-siz
 .content { margin: 0 20px 20px 20px; }
 
 h2 {
-    color: #c00;
-    text-transform: uppercase; font-size: 20px; font-weight: bold;
-    border-bottom: 1px solid #33b5e5; margin-bottom: 0;
+    color: #c00; text-transform: uppercase; font-size: 20px; font-weight: bold;
+    margin-bottom: 0; clear: both;
 }
 
 h3 { color: #555753; font-weight: normal; font-size: 18px; }
@@ -70,18 +69,25 @@ button {
     padding: 20px; border: none; float: right;
 }
 
+select {
+    margin:6px;
+    padding:4px 12px;
+    
+    outline-style:none;
+    outline-width:0px;
+    
+    font-size:16pt;
+    background: -webkit-linear-gradient(135deg, rgba(46,52,54,1) 8px, rgba(46,52,54,0) 9px);
+    
+    -webkit-appearance: listbox;
+    border-radius: 0; border: none; border-bottom: 1px solid #2e3436;
+}
+
 /* -- LISTS ------------------------------------------------------------------ */
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px 0;
-}
+ul { list-style: none; padding: 0; margin: 0 0 20px 0; }
 
-li {
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-}
+li { padding: 20px; border-bottom: 1px solid #ddd; }
 
 li .item-description {
     white-space: nowrap;
@@ -96,38 +102,22 @@ li .item-subtext {
     margin: 4px 20px 0 0;
 }
 
-li .item-note {
-    vertical-align: top;
-    color: #33B5E5;
-    float: right;
-    margin-right: 10px;
-}
+li .item-note { vertical-align: top; color: #33B5E5; float: right; margin-right: 10px; }
+li .hint-text { font-size: smaller; color: #555575;}
 
-li .line-button {
-    width: 24px;
-    height: 24px;
-    margin: 16px 5px 0 0;
-    float: right;
-}
-
+li .line-button { width: 24px; height: 24px; margin: 11px 5px 0 0; float: right; }
 li .button-remove { background: url(../img/delete.png) transparent no-repeat; }
-
 li .button-over-limit { background: url(../img/over-cr-limit.png) transparent no-repeat; margin-right: 16px; }
 
-.list-button {
-    margin-top: -20px; padding: 30px 20px; 
-    border-bottom: 1px solid #ddd;
-}
+.list-button { margin-top: -20px; padding: 30px 20px;  border-bottom: 1px solid #ddd; }
+
+.seamless-list li { border: none; padding: 20px 0; }
 
 /* -- FOOTER ----------------------------------------------------------------- */
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    color: #aaa;
-    font-size: 12px;
-}
-
+.footer { position: absolute; bottom: 0; color: #aaa; font-size: 12px; }
 .footer a { color: #aaa; }
 
 .swiper-slide { overflow-y: scroll; }
+
+.hidden { display: none; }

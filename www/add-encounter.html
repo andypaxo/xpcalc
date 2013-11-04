@@ -13,14 +13,16 @@
     <body>
         <header class='holo-actionBar'><span id='page-title'>Add encounter</span></header>
         
-        <form action='#' id='form-add-encounter'>
-            <h2>Foes</h2>
-            <ul id='list-foes'></ul>
-            <button id='btn-add-foe'>Add a foe</button>
-            <h2>Characters</h2>
-            <ul id='list-characters'></ul>
-            <button id='btn-done'>Victory!</button>
-        </form>
+        <div class='content'>
+            <form action='#' id='form-add-encounter'>
+                <h2>Foes</h2>
+                <ul id='list-foes' class='seamless-list'></ul>
+                <button id='btn-add-foe'>Add a foe</button>
+                <h2>Characters</h2>
+                <ul id='list-characters' class='seamless-list'></ul>
+                <button id='btn-done'>Victory!</button>
+            </form>
+        </div>
 
         <script type="text/template" id='tmpl-character'>
             <li>
@@ -31,7 +33,7 @@
         </script>
 
         <script type="text/template" id='tmpl-foe'>
-            &nbsp;Amount: <select name='foe-quantity'>
+            <span class='hint-text'>Amount</span> <select name='foe-quantity'>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
@@ -64,7 +66,7 @@
                 <option value='29'>29</option>
                 <option value='30'>30</option>
             </select>
-            CR: <select name='foe-challenge-rating'>
+            <span class='hint-text'>CR</span> <select name='foe-challenge-rating'>
                 <option value='0.1'>1/10</option>
                 <option value='0.125'>1/8</option>
                 <option value='0.16666666666666666'>1/6</option>
