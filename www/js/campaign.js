@@ -80,8 +80,13 @@
 
         var tabs = Array.prototype.slice.call(document.getElementsByClassName('tab'));
 
+        var initialSlide = window.location.hash.length ? Number(window.location.hash.substr(1)) : 0;
+
+        document.getElementsByClassName('tab')[initialSlide].classList.add('active');
+
         var swiper = new Swiper('.swiper-container', {
             mode: 'horizontal',
+            initialSlide: initialSlide,
             onSlideChangeStart: function (swiper) {
                 tabs.forEach(function (elem, index) {
                     if (swiper.activeIndex === index)
@@ -89,6 +94,12 @@
                     else
                         elem.classList.remove('active');
                 });
+
+                var loc = window.location.href;
+                if (window.location.hash.length) {
+                    loc = loc.replace(window.location.hash, '');
+                }
+                window.location.replace(loc + '#' + swiper.activeIndex);
             }
         });
 
