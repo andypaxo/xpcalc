@@ -80,7 +80,7 @@
 
         var tabs = Array.prototype.slice.call(document.getElementsByClassName('tab'));
 
-        var initialSlide = window.location.hash.length ? Number(window.location.hash.substr(1)) : 0;
+        var initialSlide = repo.fetch('campaign-initial-tab') || 0;
 
         document.getElementsByClassName('tab')[initialSlide].classList.add('active');
 
@@ -95,11 +95,7 @@
                         elem.classList.remove('active');
                 });
 
-                var loc = window.location.href;
-                if (window.location.hash.length) {
-                    loc = loc.replace(window.location.hash, '');
-                }
-                window.location.replace(loc + '#' + swiper.activeIndex);
+                repo.store('campaign-initial-tab', swiper.activeIndex);
             }
         });
 
