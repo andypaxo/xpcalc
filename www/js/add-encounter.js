@@ -119,6 +119,20 @@
         })[0];
     };
 
+    var trashEncounter = function() {
+        var id = campaignId.replace('campaign', 'encounters');
+        repo.eraseItemFromList({listId:id, itemId:loadedEncounter.id});
+    };
+
+    var confirmTrashEncounter = function () {
+        if (window.confirm('Delete this encounter?'))
+        {
+            trashEncounter();
+            window.history.back();
+        }
+        return false;
+    };
+
     window.onload = function () {
         campaignId = util.getQueryStringParam('campaignId');
         encounter.party = pullPartyFromDatabase();
@@ -129,6 +143,9 @@
             var clonedEncounter = JSON.parse(JSON.stringify(loadedEncounter));
             encounter.foes = clonedEncounter.foes;
             document.getElementById('page-title').innerText = 'Edit encounter';
+            document.getElementById('btn-trash-encounter').onclick = confirmTrashEncounter;
+        } else {
+            document.getElementById('btn-trash-encounter').classList.add('hidden');
         }
 
         buildFoeListing();

@@ -43,4 +43,25 @@ describe('Repository', function () {
         });
 
     });
+    describe('When erasing an item from a list', function () {
+
+        it('Should remove the item', function () {
+            repo.store('repo-test-list', [
+                {id:'abcd', name:'Cheltenham'},
+                {id: 'xyxy', name: 'Cardiff'},
+                {id: '1234', name: 'Manchester'},
+            ]);
+            repo.eraseItemFromList({
+                listId:'repo-test-list',
+                itemId: 'xyxy'
+            });
+            var result = repo.fetch('repo-test-list');
+
+            expect(result.length).toBe(2);
+            expect(result[0].id).toBe('abcd');
+            expect(result[0].name).toBe('Cheltenham');
+            expect(result[1].id).toBe('1234');
+            expect(result[1].name).toBe('Manchester');
+        });
+    });
 });

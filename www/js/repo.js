@@ -39,6 +39,14 @@ var repo = new (function() {
         this.store(params.listId, list);
     };
 
+    this.eraseItemFromList = function(params) {
+        var list = this.fetch(params.listId) || [];
+        var itemId = params.itemId;
+        var index = util.indexOfMatch(list, function (itemToMatch) { return itemToMatch.id === itemId; });
+        list.splice(index, 1);
+        this.store(params.listId, list);
+    };
+
     this.startCampaign = function (campaign) {
         var id = util.makeId('campaign');
         campaign.id = id;

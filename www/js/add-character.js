@@ -44,7 +44,21 @@
     var recalculateLevel = function () {
         var level = calculator.playerLevel(getCharacter());
         document.getElementById('display-level').innerText = level.toString();
-    }
+    };
+
+    var trashCharacter = function() {
+        var id = campaignId.replace('campaign', 'characters');
+        repo.eraseItemFromList({listId:id, itemId:characterId});
+    };
+
+    var confirmTrashCharacter = function () {
+        if (window.confirm('Delete this character?'))
+        {
+            trashCharacter();
+            window.history.back();
+        }
+        return false;
+    };
 
     window.onload = function () {
         campaignId = util.getQueryStringParam('campaignId');
@@ -57,6 +71,9 @@
         if (characterId) {
             document.getElementById('btn-add-char').innerText = 'Save';
             document.getElementById('title-text').innerText = 'Edit character';
+            document.getElementById('btn-trash-character').onclick = confirmTrashCharacter;
+        } else {
+            document.getElementById('btn-trash-character').classList.add('hidden');
         }
 
         document.getElementById('input-name').select();
@@ -72,7 +89,7 @@
         var recalc = function() { recalculateLevel.call(ctx); }
         inputLevelAdjust.oninput = inputXp.oninput = recalc;
         recalculateLevel();
-        
+
         var nav = document.getElementById('nav');
         var fixPagesHeight = function() {
             var newHeight = (window.innerHeight - nav.offsetHeight - 20) + 'px';
