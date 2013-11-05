@@ -121,6 +121,14 @@ li .button-over-limit { background: url(../img/over-cr-limit.png) transparent no
 .footer { position: absolute; bottom: 0; color: #aaa; font-size: 12px; }
 .footer a { color: #aaa; }
 
+#undo-message {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    padding: 10px 20px; border-radius: 5px;
+    background: #2e3436; z-index: 100; font-size: 12px; 
+}
+#undo-message .undo-description {  color: #f57e7e; }
+#undo-message .action { color: white; font-weight: bold; display: inline-block; float: right; padding: 0 0 0 20px; border-left: 1px solid #444;}
+
 .swiper-slide, .content-scroll { overflow-y: scroll; }
 .content-scroll { overflow-x: hidden; }
 

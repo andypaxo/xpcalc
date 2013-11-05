@@ -47,7 +47,9 @@
     };
 
     var trashCharacter = function() {
+        var character = getCharacter(characterId);
         var id = campaignId.replace('campaign', 'characters');
+        repo.setUndoState({objectId:id, message:'Deleted ' + character.name});
         repo.eraseItemFromList({listId:id, itemId:characterId});
     };
 

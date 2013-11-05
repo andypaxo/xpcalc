@@ -78,8 +78,8 @@ var repo = new (function() {
         return this.fetch('undo-state');
     };
 
-    this.restoreUndoState = function() {
-        var undoState = this.getUndoState();
+    this.restoreUndoState = function(stateToRestore) {
+        var undoState = stateToRestore || this.getUndoState();
         this.store(undoState.id, undoState.data);
         this.clearUndoState();
     };

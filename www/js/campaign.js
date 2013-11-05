@@ -17,7 +17,7 @@
         var campaign = repo.fetch(campaignId);
         document.getElementById('title-campaign-name').innerText = campaign.name;
 
-        // -------------
+        // Encounters ---------------------------------------------------
 
         var listingElement = document.getElementById('list-encounters');
 
@@ -42,7 +42,7 @@
             attachClickHandler(elems[i], campaignId, encounterId);
         };
 
-        // ------------------
+        // Characters ---------------------------------------------------
 
         var characters = repo.fetch(campaignId.replace('campaign', 'characters')) || [];
         characters.forEach(function (char) {
@@ -76,7 +76,7 @@
             document.location = 'start-campaign.html?campaignId=' + campaignId;
         };
 
-        // ------------
+        // Tabs ---------------------------------------------------------
 
         var tabs = Array.prototype.slice.call(document.getElementsByClassName('tab'));
 
@@ -110,5 +110,21 @@
                 swiper.swipeTo(index);
             };
         });
+
+        // Undo ---------------------------------------------------------
+
+        var undoState = repo.getUndoState();
+        if (undoState) {
+            var undoButton = document.getElementById('undo-message');
+            var undoMessageElem = document.getElementsByClassName('undo-description')[0];
+            undoButton.classList.remove('hidden');
+            undoMessageElem.innerText = undoState.message;
+            repo.clearUndoState();
+
+            undoButton.onclick = function () {
+                repo.restoreUndoState(undoState);
+                window.location.reload();
+            };
+        }
     };
 })();

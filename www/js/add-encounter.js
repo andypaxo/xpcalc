@@ -121,6 +121,7 @@
 
     var trashEncounter = function() {
         var id = campaignId.replace('campaign', 'encounters');
+        repo.setUndoState({objectId:id, message:'Deleted encounter'});
         repo.eraseItemFromList({listId:id, itemId:loadedEncounter.id});
     };
 
