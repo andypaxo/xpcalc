@@ -43,6 +43,7 @@ describe('Repository', function () {
         });
 
     });
+
     describe('When erasing an item from a list', function () {
 
         it('Should remove the item', function () {
@@ -62,6 +63,51 @@ describe('Repository', function () {
             expect(result[0].name).toBe('Cheltenham');
             expect(result[1].id).toBe('1234');
             expect(result[1].name).toBe('Manchester');
+        });
+    });
+
+    describe('When using undo', function () {
+
+        it('Should set an undo state', function () {
+            repo.store('campaign-1', {name:'To The Moon'});
+            repo.setUndoState({
+                objectId : 'campaign-1',
+                message : 'Updated campaign'
+            });
+            var result = repo.getUndoState();
+
+            expect(result.id).toBe('campaign-1');
+            expect(result.data.name).toBe('To The Moon');
+            expect(result.message).toBe('Updated campaign');
+        });
+
+        it('Should clear an undo state', function () {
+            repo.store('campaign-1', {name:'To The Moon'});
+            repo.setUndoState({
+                objectId : 'campaign-1',
+                message : 'Updated campaign'
+            });
+            repo.clearUndoState();
+            var result = repo.getUndoState();
+
+            expect(result).toBeNull();
+        });
+
+        it('Should restore an undo state', function () {
+            repo.store('campaign-1', {name:'To The Moon'});
+            repo.setUndoState({
+                objectId : 'campaign-1',
+                message : 'Updated campaign'
+            });
+
+            repo.store('campaign-1', {name:'Voyage to Manchester'});
+            repo.restoreUndoState();
+
+            var result = repo.fetch('campaign-1');
+            var finalUndoState = repo.getUndoState();
+
+            expect(result.name).toBe('To The Moon');
+            expect(finalUndoState).toBeNull();
         });
     });
 });

@@ -64,6 +64,30 @@ var repo = new (function() {
         return chars.filter(function (character) { return character.id === characterId; })[0];
     };
 
+    // Undo ---------------------------------------------------------
+
+    this.setUndoState = function(params) {
+        this.store('undo-state', {
+            id: params.objectId,
+            data: this.fetch(params.objectId),
+            message: params.message
+        });
+    };
+
+    this.getUndoState = function() {
+        return this.fetch('undo-state');
+    };
+
+    this.restoreUndoState = function() {
+        var undoState = this.getUndoState();
+        this.store(undoState.id, undoState.data);
+        this.clearUndoState();
+    };
+
+    this.clearUndoState = function() {
+        this.erase('undo-state');
+    };
+
     // Migrations ---------------------------------------------------
 
     if (!this.fetch('data-version'))
