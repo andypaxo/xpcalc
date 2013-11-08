@@ -18,6 +18,7 @@ body { font-family: Roboto, 'Droid Sans', Helvetica, Arial, sans-serif; font-siz
 .action-bar-button {
     float: right; width: 30px; height: 30px;
 }
+.limited-size-actionbar-text { display:inline-block; max-width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .content { margin: 0 20px 20px 20px; }
 
@@ -27,6 +28,22 @@ h2 {
 }
 
 h3 { color: #555753; font-weight: normal; font-size: 18px; }
+
+.hint {
+    padding: 10px 40px 10px 10px; margin: 10px; display: none;
+    background-position-x: 100%; background-position-y: 50%; background-repeat: no-repeat;
+    background-size: 30px;
+}
+.hint.point-hint-down  { background-image: url(../img/down-arrow.png); -webkit-animation:bounce-down-arrow 0.3s ease-out; }
+.hint.point-hint-right { background-image: url(../img/right-arrow.png); }
+.hint p { margin-top: 20px;}
+.hint p:first-child { margin-top: 0;}
+@-webkit-keyframes bounce-down-arrow {
+    0% { background-position-y: -20%; }
+    60% { background-position-y: 50%; }
+    80% { background-position-y: 30%; }
+    100% { background-position-y: 50%; }
+}
 
 /* -- TABS ------------------------------------------------------------------- */
 
@@ -88,6 +105,7 @@ select {
 ul { list-style: none; padding: 0; margin: 0 0 20px 0; }
 
 li { padding: 10px 20px; border-bottom: 1px solid #ddd; }
+ul.with-breathing-room li { padding: 20px;}
 
 li .item-description {
     white-space: nowrap;

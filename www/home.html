@@ -10,8 +10,12 @@
         <header class="holo-actionBar"><span>Campaigns</span></header>
 
         <div class='content'>
-            <ul id='list-campaigns'></ul>
-            <button id='btn-add-campaign'>Start a new campaign</button>
+            <div class='hint point-hint-down'>
+                <p>Got your party ready?</p>
+                <p>Tap here to begin</p>
+            </div>
+            <ul id='list-campaigns' class='with-breathing-room'></ul>
+            <button id='btn-add-campaign'>Start a campaign</button>
 
             <footer class='footer' style='display:none'>
                 <a href='spec.html'>Self diagnostic</a>
@@ -19,7 +23,8 @@
             </footer>
         </div>
 
-        <script type="text/javascript" src="cordova.js"></script><script type="text/javascript" src="js/handle-error.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/handle-error.js"></script>
         <script type="text/javascript" src="js/util.js"></script>
         <script type="text/javascript" src="js/tmpl.js"></script>
         <script type="text/javascript" src="js/repo.js"></script>

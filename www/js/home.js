@@ -29,5 +29,9 @@
             document.location = 'campaign.html?id=' + campaignId;
             };
         });
+
+        if (!campaignListing.length) {
+            document.getElementsByClassName('hint')[0].style.display = 'block';
+        }
     };
 })();

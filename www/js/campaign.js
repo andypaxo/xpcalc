@@ -133,5 +133,13 @@
                 window.location.reload();
             };
         }
+
+        // Hints --------------------------------------------------------
+
+        if (!characters.length) {
+            document.getElementById('new-party-hint').style.display = 'block';
+        } else if (characters.length > 2 && !encounters.length) {
+            document.getElementById('new-encounter-hint').style.display = 'block';
+        }
     };
 })();

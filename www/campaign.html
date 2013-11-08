@@ -9,7 +9,7 @@
     </head>
     <body>
         <nav id='nav'>
-            <header class='holo-actionBar'><span id='title-campaign-name'></span><img class='action-bar-button' src='img/content-edit.png'  id='btn-edit-campaign' /></header>
+            <header class='holo-actionBar'><span id='title-campaign-name' class='limited-size-actionbar-text'></span><img class='action-bar-button' src='img/content-edit.png'  id='btn-edit-campaign' /></header>
             <div class='tabs'>
                 <span class='tab'>Characters</span><span class='tab'>Encounters</span>
             </div>
@@ -18,10 +18,13 @@
         <div class='content'>
             <div class='swiper-container' id='content'>
                 <div class='swiper-wrapper'>
-                    <div class='swiper-slide'>
-                        <div id='btn-add-char' class='list-button list-button-with-icon button-add-char'>Add a character</div>
-                        <ul id='list-characters'></ul>
-                    </div>
+                        <div class='swiper-slide'>
+                            <div id='btn-add-char' class='list-button list-button-with-icon button-add-char'>Add a character</div>
+                            <ul id='list-characters'></ul>
+                            <div id='new-encounter-hint' class='hint point-hint-right'>
+                                <p>When you've got everyone, swipe to add an encounter</p>
+                            </div>
+                        </div>
                     <div class='swiper-slide'>
                         <div id='btn-add-encounter' class='list-button list-button-with-icon button-add-encounter'>Add an encounter</div>
                         <ul id='list-encounters'></ul>
