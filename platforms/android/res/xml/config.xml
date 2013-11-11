@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="net.softwarealchemist.xpcalc" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
+<widget id="net.softwarealchemist.xp_calc" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
     <name>DnD XP Calculator</name>
     <description>
         Track player XP for DnD 3.5

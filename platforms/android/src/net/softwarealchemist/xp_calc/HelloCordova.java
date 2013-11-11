@@ -17,7 +17,7 @@
        under the License.
  */
 
-package net.softwarealchemist.xpcalc;
+package net.softwarealchemist.xp_calc;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
