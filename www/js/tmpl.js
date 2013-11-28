@@ -3,10 +3,14 @@ var tmpl = {
         var input = params.input;
         var obj = params.obj;
 
+        var makeSafe = function (str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        };
+
         var exp = /@([\w]+)/g;
         var match;
         while (match = exp.exec(input)) {
-            var value = obj[match[1]];
+            var value = makeSafe(obj[match[1]].toString());
             input = input.replace(match[0], value);
             exp.lastIndex = 0; // Always start from the start
         }
