@@ -124,8 +124,8 @@ li .item-note { vertical-align: top; color: #33B5E5; float: right; margin-right:
 li .hint-text { font-size: smaller; color: #555575;}
 
 li .line-button { width: 24px; height: 24px; margin: 11px 5px 0 0; float: right; background-size: 24px; }
-li .button-remove { background: url(../img/delete.png) transparent no-repeat; }
-li .button-over-limit { background: url(../img/over-cr-limit.png) transparent no-repeat; margin-right: 16px; }
+li .button-remove { background-image: url(../img/delete.png); }
+li .button-over-limit { background-image: url(../img/over-cr-limit.png); margin-right: 16px; }
 
 .list-button { padding: 30px 20px 20px 20px;  border-bottom: 1px solid #ddd; }
 .list-button-with-icon { background-size: 40px; background-position: 20px; background-repeat: no-repeat; padding-left: 70px; }
