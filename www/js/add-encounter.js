@@ -36,11 +36,17 @@
             var newListItem = document.createElement('li');
             newListItem.innerHTML = template;
             
-            var crInput = util.findInput(newListItem, 'foe-challenge-rating');
-            crInput.value = foe.challengeRating;
-            crInput.onchange = function () {
-                foe.challengeRating = crInput.value;
-                recalculateScores();
+            // TODO : Make this work again
+            // var crInput = util.findInput(newListItem, 'foe-challenge-rating');
+            // crInput.value = foe.challengeRating;
+            // crInput.onchange = function () {
+            //     foe.challengeRating = crInput.value;
+            //     recalculateScores();
+            // };
+            var crInput = newListItem.getElementsByClassName('foe-challenge-rating')[0];
+            crInput.innerText = '' + foe.challengeRating;
+            crInput.onclick = function () {
+                showChallengePicker(foe);
             };
             
             var qInput = util.findInput(newListItem, 'foe-quantity');
@@ -92,6 +98,20 @@
                     character.include = elem.checked;
                     recalculateScores();
                 };
+            });
+    };
+
+    var showChallengePicker = function (foe) {
+        var picker = document.getElementById('challenge-picker');
+        picker.classList.remove('hidden');
+        Array.prototype.forEach.call(
+            picker.getElementsByClassName('cr-challenge-value'),
+            function (elem) {
+                if (elem.getAttribute('data-value') == foe.challengeRating) {
+                    elem.classList.add('selected');
+                } else {
+                    elem.classList.remove('selected');
+                }
             });
     };
 

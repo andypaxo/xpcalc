@@ -100,6 +100,8 @@ select {
     border-radius: 0; border: none; border-bottom: 1px solid #2e3436;
 }
 
+.button-icon { width: 24px; height: 24px; display: inline-block; }
+
 /* -- LISTS ------------------------------------------------------------------ */
 
 ul { list-style: none; padding: 0; margin: 0 0 20px 0; }
@@ -151,3 +153,17 @@ li .button-over-limit { background-image: url(../img/over-cr-limit.png); margin-
 .content-scroll { overflow-x: hidden; }
 
 .hidden { display: none; }
+
+/* -- DIALOG ----------------------------------------------------------------- */
+
+.dialog-full {
+    position: absolute; top : 20px; left: 20px; right: 20px; bottom: 20px;
+    background: white; box-shadow: 0 0 10px 10px #333; overflow: scroll;
+}
+
+/*------------*/
+
+.xp-table { width: 100%; border-collapse: collapse; }
+.xp-table td { width: 25%; padding: 20px 0; text-align: center; border: 1px solid #aaa; }
+.xp-table td.selected { background: #2e3436; color: white; }
+.xp-table td:hover { background: #ef2929; color: white; }
