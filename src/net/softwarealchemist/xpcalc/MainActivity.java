@@ -3,6 +3,7 @@ package net.softwarealchemist.xpcalc;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.softwarealchemist.xpcalc.domain.Character;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -64,24 +65,31 @@ public class MainActivity extends Activity {
             GridView rootView = (GridView) inflater.inflate(R.layout.fragment_character_list, container, false);
             
             
-            List<String> characterList = new ArrayList<String>();
-            characterList.add("Tordek");
-            characterList.add("Gimble");
-            characterList.add("Mialee");
-            characterList.add("Lidda");
+            List<Character> characterList = new ArrayList<Character>();
+            addCharacter(characterList, "Tordek", 7);
+            addCharacter(characterList, "Gimble", 7);
+            addCharacter(characterList, "Mialee", 6);
+            addCharacter(characterList, "Lidda", 7);
 			CharacterListAdapter adapter = new CharacterListAdapter(this.getActivity(), characterList); 
             
             rootView.setAdapter(adapter);
             
             return rootView;
         }
+
+		private void addCharacter(List<Character> characterList, final String name, int level) {
+			final Character character = new Character();
+			character.name = name;
+			character.level = level;
+			characterList.add(character);
+		}
         
         private class CharacterListAdapter extends BaseAdapter {
 
-        	List<String> list;
+        	List<Character> list;
         	Context context;
 
-			public CharacterListAdapter(Context context, List<String> list) {
+			public CharacterListAdapter(Context context, List<Character> list) {
 				super();
 				this.list = list;
 				this.context = context;
@@ -118,6 +126,7 @@ public class MainActivity extends Activity {
 					charView = (View) convertView;
 				}
 		 
+				((LayoutCharacterTile)charView).bindTo(list.get(position));
 				return charView;
 			}
         	
