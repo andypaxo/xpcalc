@@ -5,19 +5,15 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.ListActivity;
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ListAdapter;
 
 public class MainActivity extends Activity {
 
