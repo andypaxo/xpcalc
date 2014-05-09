@@ -3,10 +3,10 @@ package net.softwarealchemist.xpcalc;
 import net.softwarealchemist.xpcalc.domain.Character;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
-public class LayoutCharacterTile extends RelativeLayout {
+public class LayoutCharacterTile extends GridLayout {
 
     public LayoutCharacterTile(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -15,7 +15,7 @@ public class LayoutCharacterTile extends RelativeLayout {
 	@Override
     protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec)
     {
-		super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
 	public void bindTo(Character character) {

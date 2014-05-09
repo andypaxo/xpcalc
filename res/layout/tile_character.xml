@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <net.softwarealchemist.xpcalc.LayoutCharacterTile xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/background_dark" >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/background_dark"
+    android:columnCount="2"
+    android:minHeight="100dp"
+    android:minWidth="150dp"
+    android:padding="10dp"
+    android:textColor="@android:color/primary_text_dark" >
 
     <TextView
         android:id="@+id/name"
@@ -10,8 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/primary_text_dark" />
+        android:layout_columnSpan="2"
+        android:text="Tordek"
+        android:textAppearance="?android:attr/textAppearanceLargeInverse"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/level"
@@ -19,9 +26,30 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/primary_text_dark"
-        android:textSize="45sp"
-        android:textStyle="bold" />
+        android:text="7"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:text="10538"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lvl"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:text="XP"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
 </net.softwarealchemist.xpcalc.LayoutCharacterTile>
