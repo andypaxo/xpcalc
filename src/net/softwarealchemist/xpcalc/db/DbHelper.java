@@ -1,14 +1,15 @@
 package net.softwarealchemist.xpcalc.db;
 
+import net.softwarealchemist.xpcalc.util.L;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-	public DbHelper(Context context, String name, CursorFactory factory, int version) {
-		super(context, name, factory, version);
+	public DbHelper(Context context) {
+		super(context, "xpcalc.db", null, getVersion());
 	}
 	
 	
@@ -19,25 +20,44 @@ public class DbHelper extends SQLiteOpenHelper {
 		db.execSQL("PRAGMA foreign_keys=ON;");
 	}
 
-
-
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		
+		onUpgrade(db, 0, getVersion());
+		setupFirstTimeData(db);
 	}
+
+	private void setupFirstTimeData(SQLiteDatabase db) {
+		db.beginTransaction();
+		try {
+			final ContentValues values = new ContentValues();
+			values.put("name", "Campaign");
+			if (db.insert("Campaign", null, values) == -1)
+				L.og("Initial insert failed");
+			
+			db.setTransactionSuccessful();
+		} finally {
+			db.endTransaction();
+		}
+	}
+
+
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.beginTransaction();
-
-		for (int i = oldVersion; i < newVersion; i++)
-			db.execSQL(migrations[i]);
-		
-		db.setTransactionSuccessful();
-		db.endTransaction();
+		try {
+			L.og("Upgrading from %d to %d", oldVersion, newVersion);
+	
+			for (int i = oldVersion; i < newVersion; i++)
+				db.execSQL(migrations[i]);
+			
+			db.setTransactionSuccessful();
+		} finally {
+			db.endTransaction();
+		}
 	}
 	
-	public int getVersion() {
+	public static int getVersion() {
 		return migrations.length;
 	}
 
@@ -68,7 +88,7 @@ public class DbHelper extends SQLiteOpenHelper {
 		+ "encounter_id INTEGER,"
 		+ "FOREIGN KEY (encounter_id) REFERENCES Encounter(id) DEFERRABLE INITIALLY DEFERRED);",
 		
-		"CREATE TABLE Reward"
+		"CREATE TABLE Reward ("
 		+ "id INTEGER PRIMARY KEY,"
 		+ "xpAmount INTEGER,"
 		+ "shouldBeApplied INTEGER,"
