@@ -7,6 +7,7 @@ public class Campaign extends Entity {
 
 	public List<Character> characters;
 	public List<Encounter> encounters;
+	public String name;
 	
 	public Campaign () {
 		characters = new ArrayList<Character>();
