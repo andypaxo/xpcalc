@@ -16,7 +16,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_columnSpan="2"
-        android:text="Tordek"
+        android:text="@string/sample_text"
         android:textAppearance="?android:attr/textAppearanceLargeInverse"
         android:textStyle="bold" />
 
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="7"
+        android:text="@string/sample_text"
         android:textAppearance="?android:attr/textAppearanceMediumInverse" />
 
     <TextView
@@ -34,14 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        android:text="10538"
+        android:text="@string/sample_text"
         android:textAppearance="?android:attr/textAppearanceMediumInverse" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lvl"
+        android:text="@string/label_level"
         android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
     <TextView
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        android:text="XP"
+        android:text="@string/label_xp"
         android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
 </net.softwarealchemist.xpcalc.LayoutCharacterTile>

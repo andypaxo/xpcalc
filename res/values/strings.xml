@@ -4,5 +4,8 @@
     <string name="app_name">DnD XP Calculator</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="sample_text">Sample</string>
+    <string name="label_level">Lvl</string>
+    <string name="label_xp">XP</string>
 
 </resources>
