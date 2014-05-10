@@ -22,22 +22,28 @@ public class CharacterListingFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    	final Repository repository = new Repository(getActivity());
-    	final List<Campaign> campaigns = repository.getCampaignInfo();
+    	final Campaign campaign = loadDefaultCampaign();
     	
         GridView rootView = (GridView) inflater.inflate(R.layout.fragment_character_list, container, false);
         
-        List<Character> characterList = new ArrayList<Character>();
-        addCharacter(characterList, "Tordek", 7);
-        addCharacter(characterList, "Gimble", 7);
-        addCharacter(characterList, "Mialee", 6);
-        addCharacter(characterList, "Lidda", 7);
-		CharacterListAdapter adapter = new CharacterListAdapter(this.getActivity(), characterList); 
+//        List<Character> characterList = new ArrayList<Character>();
+//        addCharacter(characterList, "Tordek", 7);
+//        addCharacter(characterList, "Gimble", 7);
+//        addCharacter(characterList, "Mialee", 6);
+//        addCharacter(characterList, "Lidda", 7);
+		CharacterListAdapter adapter = new CharacterListAdapter(this.getActivity(), campaign.characters); 
         
         rootView.setAdapter(adapter);
         
         return rootView;
     }
+
+	private Campaign loadDefaultCampaign() {
+		final Repository repository = new Repository(getActivity());
+    	final List<Campaign> campaigns = repository.getCampaignInfo();
+    	final Campaign campaign = repository.loadCampaign(campaigns.get(0).id);
+    	return campaign;
+	}
 
 	private void addCharacter(List<Character> characterList, final String name, int level) {
 		final Character character = new Character();

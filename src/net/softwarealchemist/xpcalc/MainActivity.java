@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AddCharactersCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,7 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.choose_campaign, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -34,10 +32,18 @@ public class MainActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add_character) {
+        	new AddCharactersDialog(this, this).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+	@Override
+	public void AddCharacters(int amount) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
