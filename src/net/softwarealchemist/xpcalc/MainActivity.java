@@ -20,14 +20,12 @@ public class MainActivity extends Activity implements AddCharactersCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            characterListingFragment = new CharacterListingFragment();
-			getFragmentManager().beginTransaction()
-                    .add(R.id.container, characterListingFragment)
-                    .commit();
-			campaign = loadDefaultCampaign();
-			characterListingFragment.setCampaign(campaign);
-        }
+        characterListingFragment = new CharacterListingFragment();
+		getFragmentManager().beginTransaction()
+                .add(R.id.container, characterListingFragment)
+                .commit();
+		campaign = loadDefaultCampaign();
+		characterListingFragment.setCampaign(campaign);
     }
 
 
@@ -39,9 +37,6 @@ public class MainActivity extends Activity implements AddCharactersCallback {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_add_character) {
         	new AddCharactersDialog(this, this).show();
@@ -61,16 +56,12 @@ public class MainActivity extends Activity implements AddCharactersCallback {
 	@Override
 	public void AddCharacters(int amount) {
 		for (int i = 0; i < amount; i++) {
-			addCharacter(campaign.characters, "foo", i+1);
+			campaign.addCharacter();
 		}
-		characterListingFragment.reload();
-	}
 
-	private void addCharacter(List<Character> characterList, final String name, int level) {
-		final Character character = new Character();
-		character.name = name;
-		character.level = level;
-		characterList.add(character);
+		final Repository repository = new Repository(this);
+		repository.saveCharacters(campaign);
+		characterListingFragment.reload();
 	}
 
 }
