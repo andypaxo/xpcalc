@@ -1,5 +1,10 @@
 package net.softwarealchemist.xpcalc;
 
+import java.util.List;
+
+import net.softwarealchemist.xpcalc.db.Repository;
+import net.softwarealchemist.xpcalc.domain.Campaign;
+import net.softwarealchemist.xpcalc.domain.Character;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,15 +12,21 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity implements AddCharactersCallback {
 
-    @Override
+    private Campaign campaign;
+	private CharacterListingFragment characterListingFragment;
+
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new CharacterListingFragment())
+            characterListingFragment = new CharacterListingFragment();
+			getFragmentManager().beginTransaction()
+                    .add(R.id.container, characterListingFragment)
                     .commit();
+			campaign = loadDefaultCampaign();
+			characterListingFragment.setCampaign(campaign);
         }
     }
 
@@ -40,10 +51,26 @@ public class MainActivity extends Activity implements AddCharactersCallback {
     }
 
 
+	private Campaign loadDefaultCampaign() {
+		final Repository repository = new Repository(this);
+    	final List<Campaign> campaigns = repository.getCampaignInfo();
+    	final Campaign campaign = repository.loadCampaign(campaigns.get(0).id);
+    	return campaign;
+	}
+
 	@Override
 	public void AddCharacters(int amount) {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < amount; i++) {
+			addCharacter(campaign.characters, "foo", i+1);
+		}
+		characterListingFragment.reload();
+	}
+
+	private void addCharacter(List<Character> characterList, final String name, int level) {
+		final Character character = new Character();
+		character.name = name;
+		character.level = level;
+		characterList.add(character);
 	}
 
 }
