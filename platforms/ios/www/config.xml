@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="net.softwarealchemist.xp_calc" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>DnD XP Calculator</name>
+    <description>
+        Track player XP for DnD 3.5
+    </description>
+    <author email="support@softwarealchemist.net" href="http://softwarealchemist.net">
+        The Software Alchemist
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="true" />
+</widget>

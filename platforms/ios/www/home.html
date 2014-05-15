@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <link rel="stylesheet" type="text/css" href="css/app.css" />
+        <title>xpcalc</title>
+    </head>
+    <body>
+        <header class="holo-actionBar"><span>Campaigns</span></header>
+
+        <div class='content'>
+            <div class='hint point-hint-down'>
+                <p>Got your party ready?</p>
+                <p>Tap here to begin</p>
+            </div>
+            <ul id='list-campaigns' class='with-breathing-room'></ul>
+            <button id='btn-add-campaign'>Start a campaign</button>
+
+            <footer class='footer' style='display:none'>
+                <a href='spec.html'>Self diagnostic</a>
+                <a href='spec/perf-test.html'>Perf test</a>
+            </footer>
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/handle-error.js"></script>
+        <script type="text/javascript" src="js/util.js"></script>
+        <script type="text/javascript" src="js/tmpl.js"></script>
+        <script type="text/javascript" src="js/repo.js"></script>
+        <script type="text/javascript" src="js/home.js"></script>
+        <script type="text/javascript" src="js/holo-touch.js"></script>
+    </body>
+</html>

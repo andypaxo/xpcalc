@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <link rel="stylesheet" type="text/css" href="css/app.css" />
+        <link rel="stylesheet" type="text/css" href="css/idangerous.swiper.css" />
+        <title>xpcalc</title>
+    </head>
+    <body>
+        <nav id='nav'>
+            <header class='holo-actionBar'><span id='title-campaign-name' class='limited-size-actionbar-text'></span><img class='action-bar-button' src='img/content-edit.png'  id='btn-edit-campaign' /></header>
+            <div class='tabs'>
+                <span class='tab'>Characters</span><span class='tab'>Encounters</span>
+            </div>
+        </nav>
+        
+        <div class='content'>
+            <div class='swiper-container' id='content'>
+                <div class='swiper-wrapper'>
+                        <div class='swiper-slide'>
+                            <div id='btn-add-char' class='list-button list-button-with-icon button-add-char'>Add a character</div>
+                            <ul id='list-characters'></ul>
+                            <div id='new-encounter-hint' class='hint point-hint-right'>
+                                <p>When you've got everyone, swipe to add an encounter</p>
+                            </div>
+                        </div>
+                    <div class='swiper-slide'>
+                        <div id='btn-add-encounter' class='list-button list-button-with-icon button-add-encounter'>Add an encounter</div>
+                        <ul id='list-encounters'></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id='undo-message' class='hidden'><span class='undo-description'></span><span class='action'>Undo</span></div>
+
+        <script type="text/javascript" src="cordova.js"></script><script type="text/javascript" src="js/handle-error.js"></script>
+        <script type="text/javascript" src="js/util.js"></script>
+        <script type="text/javascript" src="js/repo.js"></script>
+        <script type="text/javascript" src="js/tmpl.js"></script>
+        <script type="text/javascript" src="js/calculator.js"></script>
+        <script type="text/javascript" src="js/humanized_time_span.js"></script>
+        <script type="text/javascript" src="js/idangerous.swiper-2.3.min.js"></script>
+
+        <script type="text/javascript" src="js/campaign.js"></script>
+        
+        <script type="text/javascript" src="js/holo-touch.js"></script>
+    </body>
+</html>

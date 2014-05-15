@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <link rel="stylesheet" type="text/css" href="css/app.css" />
+        <title>xpcalc</title>
+    </head>
+    <body>
+        <header class='holo-actionBar' id='nav'><span id='page-title'>Add encounter</span><img class='action-bar-button' src='img/trash.png'  id='btn-trash-encounter' /></header>
+        
+        <div class='content-scroll' id='content'>
+            <div class='content'>
+                <form action='#' id='form-add-encounter'>
+                    <h2>Foes</h2>
+                    <ul id='list-foes' class='seamless-list'></ul>
+                    <button id='btn-add-foe'>Add a foe</button>
+                    <h2>Characters</h2>
+                    <ul id='list-characters' class='seamless-list'></ul>
+                    <button id='btn-done'>Victory!</button>
+                </form>
+            </div>
+        </div>
+
+        <script type="text/template" id='tmpl-character'>
+            <li>
+                <label><input type='checkbox' class='character-enable' name='@id' _checked /> @name
+                    <span class='item-note'>@xpGain</span>
+                </label>
+            </li>
+        </script>
+
+        <script type="text/template" id='tmpl-foe'>
+            <span class='hint-text'>Amount</span> <select name='foe-quantity'>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
+                <option value='6'>6</option>
+                <option value='7'>7</option>
+                <option value='8'>8</option>
+                <option value='9'>9</option>
+                <option value='10'>10</option>
+                <option value='11'>11</option>
+                <option value='12'>12</option>
+                <option value='13'>13</option>
+                <option value='14'>14</option>
+                <option value='15'>15</option>
+                <option value='16'>16</option>
+                <option value='17'>17</option>
+                <option value='18'>18</option>
+                <option value='19'>19</option>
+                <option value='20'>20</option>
+                <option value='21'>21</option>
+                <option value='22'>22</option>
+                <option value='22'>22</option>
+                <option value='23'>23</option>
+                <option value='24'>24</option>
+                <option value='25'>25</option>
+                <option value='26'>26</option>
+                <option value='27'>27</option>
+                <option value='28'>28</option>
+                <option value='29'>29</option>
+                <option value='30'>30</option>
+            </select>
+            <span class='hint-text'>CR</span>
+            <span class='foe-challenge-rating'></span>
+            <div class='line-button button-remove' name='delete'></div>
+            <div class='line-button button-over-limit' name='over'></div>
+        </script>
+
+        <div id='challenge-picker' class='hidden dialog-full'>
+            <table class="xp-table">
+                <tr>
+                    <td class='cr-challenge-value' data-value='0.1'>1/10</td>
+                    <td class='cr-challenge-value' data-value='0.125'>1/8</td>
+                    <td class='cr-challenge-value' data-value='0.16666666666666666'>1/6</td>
+                    <td class='cr-challenge-value' data-value='0.25'>1/4</td>
+                </tr>
+                <tr>
+                    <td class='cr-challenge-value' data-value='0.3333333333333333'>1/3</td>
+                    <td class='cr-challenge-value' data-value='0.5'>1/2</td>
+                    <td class='cr-challenge-value' data-value='1'>1</td>
+                    <td class='cr-challenge-value' data-value='2'>2</td>
+                </tr>
+                <tr>
+                    <td class='cr-challenge-value' data-value='3'>3</td>
+                    <td class='cr-challenge-value' data-value='4'>4</td>
+                    <td class='cr-challenge-value' data-value='5'>5</td>
+                    <td class='cr-challenge-value' data-value='6'>6</td>
+                </tr>
+                <tr>
+                    <td class='cr-challenge-value' data-value='7'>7</td>
+                    <td class='cr-challenge-value' data-value='8'>8</td>
+                    <td class='cr-challenge-value' data-value='9'>9</td>
+                    <td class='cr-challenge-value' data-value='10'>10</td>
+                </tr>
+                <tr>
+                    <td class='cr-challenge-value' data-value='11'>11</td>
+                    <td class='cr-challenge-value' data-value='12'>12</td>
+                    <td class='cr-challenge-value' data-value='13'>13</td>
+                    <td class='cr-challenge-value' data-value='14'>14</td>
+                </tr>
+                <tr>
+                    <td class='cr-challenge-value' data-value='15'>15</td>
+                    <td class='cr-challenge-value' data-value='16'>16</td>
+                    <td class='cr-challenge-value' data-value='17'>17</td>
+                    <td class='cr-challenge-value' data-value='18'>18</td>
+                </tr>
+                <tr>
+                    <td class='cr-challenge-value' data-value='19'>19</td>
+                    <td class='cr-challenge-value' data-value='20'>20</td>
+                    <td class='cr-challenge-value' data-value='21'>21</td>
+                    <td class='cr-challenge-value' data-value='22'>22</td>
+                </tr>
+                <tr>
+                    <td class='cr-challenge-value' data-value='23'>23</td>
+                    <td class='cr-challenge-value' data-value='24'>24</td>
+                    <td class='cr-challenge-value' data-value='25'>25</td>
+                    <td class='cr-challenge-value' data-value='26'>26</td>
+                </tr>
+                <tr>
+                    <td class='cr-challenge-value' data-value='27'>27</td>
+                    <td class='cr-challenge-value' data-value='28'>28</td>
+                    <td class='cr-challenge-value' data-value='29'>29</td>
+                    <td class='cr-challenge-value' data-value='30'>30</td>
+                </tr>
+            </table>
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script><script type="text/javascript" src="js/handle-error.js"></script>
+        <script type="text/javascript" src="js/util.js"></script>
+        <script type="text/javascript" src="js/repo.js"></script>
+        <script type="text/javascript" src="js/tmpl.js"></script>
+        <script type="text/javascript" src="js/calculator.js"></script>
+        <script type="text/javascript" src="js/add-encounter.js"></script>
+        <script type="text/javascript" src="js/holo-touch.js"></script>
+    </body>
+</html>

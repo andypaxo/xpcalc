@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Perf test</title>
+    </head>
+    <body>
+        <div id="perf-test"><span id="start-perf-test">Persistance performance test</span></div>
+        <script type="text/javascript">
+            (function() {
+                var perfTestElem = document.getElementById("perf-test");
+                document.getElementById("start-perf-test").onclick = function () {
+                    perfTestElem.innerHTML = "<p>Starting test</p>";
+                    perfTestElem.innerHTML += "<p>Creating data</p>";
+                    window.localStorage.removeItem("persistance-test");
+                    var dataToStore = [];
+                    for (var i = 0; i < 50; i++) {
+                        dataToStore.push({
+                            a: [{b: 'c'+i, d: 'e'+i}, {b: 'c'+i, d: 'e'+i}, {b: 'c'+i, d: 'e'+i}, {b: 'c'+i, d: 'e'+i}, {b: 'c'+i, d: 'e'+i}],
+                            b: [{c: 100 * i, d: 100 * i}, {c: 100 * i, d: 100 * i}, {c: 100 * i, d: 100 * i}, {c: 100 * i, d: 100 * i}, {c: 100 * i, d: 100 * i}]
+                        });
+                    };
+                    perfTestElem.innerHTML += "<p>Storing data</p>";
+                    window.localStorage.setItem("persistance-test", JSON.stringify(dataToStore));
+                    perfTestElem.innerHTML += "<p>Retrieving data</p>";
+                    var result = JSON.parse(window.localStorage.getItem("persistance-test"));
+                    perfTestElem.innerHTML += "<p>Done</p>";
+                    perfTestElem.innerHTML += "<pre>"+JSON.stringify(result, null, "  ")+"</pre>";
+                };
+            })();
+        </script>
+    </body>
+</html>
