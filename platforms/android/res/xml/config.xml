@@ -1,5 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="net.softwarealchemist.xp_calc" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
+<widget id="net.softwarealchemist.xp_calc" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="App">
+        <param name="android-package" value="org.apache.cordova.App" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
     <name>DnD XP Calculator</name>
     <description>
         Track player XP for DnD 3.5
@@ -8,15 +15,7 @@
         The Software Alchemist
     </author>
     <content src="index.html" />
-    <feature name="App">
-        <param name="android-package" value="org.apache.cordova.App" />
-    </feature>
-    <feature name="Device">
-        <param name="android-package" value="org.apache.cordova.device.Device" />
-    </feature>
     <access origin="*" />
-    <preference name="useBrowserHistory" value="true" />
-    <preference name="exit-on-suspend" value="false" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="true" />
 </widget>
