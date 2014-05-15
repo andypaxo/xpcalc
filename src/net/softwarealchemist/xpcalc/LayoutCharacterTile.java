@@ -19,7 +19,8 @@ public class LayoutCharacterTile extends GridLayout {
     }
 
 	public void bindTo(Character character) {
-		((TextView)findViewById(R.id.name)).setText(character.name);
-		((TextView)findViewById(R.id.level)).setText(Integer.toString(character.level));
+		((TextView)findViewById(R.id.label_name)).setText(character.name);
+		((TextView)findViewById(R.id.label_level)).setText(Integer.toString(character.level));
+		((TextView)findViewById(R.id.label_xp)).setText(Integer.toString(character.xp));
 	}
 }

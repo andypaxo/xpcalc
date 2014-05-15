@@ -33,11 +33,11 @@ public final class R {
         public static final int action_add_character=0x7f090007;
         public static final int action_add_encounter=0x7f090008;
         public static final int container=0x7f090000;
-        public static final int level=0x7f090003;
-        public static final int name=0x7f090002;
+        public static final int label_level=0x7f090003;
+        public static final int label_name=0x7f090002;
+        public static final int label_xp=0x7f090004;
         public static final int textView1=0x7f090005;
         public static final int textView2=0x7f090006;
-        public static final int textView3=0x7f090004;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

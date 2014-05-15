@@ -10,7 +10,7 @@
     android:textColor="@android:color/primary_text_dark" >
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/label_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -21,7 +21,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/level"
+        android:id="@+id/label_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -30,7 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceMediumInverse" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/label_xp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
