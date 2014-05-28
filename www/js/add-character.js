@@ -4,8 +4,11 @@
         'Sersam', 'Dynab', 'Quequeo', 'Awmen', 'Rileg', 'Drayss', 'Omdar',
         'Rotedyn', 'Serzol', 'Wale', 'Lertqua', 'Leild', 'Roddara', 'Rissha',
         'Nalkima', 'Aradi', 'Elyee', 'Sersulim', 'Raddarmos', 'Fenn', 'Lor',
-        'Kimurne', 'Radranu', 'Nynage', 'Etqua', 'Undskel', 'Banyage', 'Vuron'];
-    var randomName = util.randomItemFrom(names) + ' ' + util.randomItemFrom(names);
+        'Kimurne', 'Radranu', 'Nynage', 'Etqua', 'Undskel', 'Banyage', 'Vuron',
+        'Krusk', 'Gimble', 'Devis', 'Jozan', 'Eberk', 'Vadania', 'Regdar',
+        'Tordek', 'Ember', 'Alhandra', 'Soveliss', 'Lidda', 'Kerwyn', 'Hennet',
+        'Aramil', 'Mialee', 'Ialdabode', 'Mitra', 'Sandharrow', 'Eulad', 'Xerxes'];
+    var randomName = util.randomItemFrom(names);
     var campaignId;
     var characterId;
 
